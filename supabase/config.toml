@@ -1,0 +1,13 @@
+project_id = "qzdefifvpwlvhnfkzlat"
+
+[functions.send-email-notification]
+verify_jwt = false
+
+[functions.create-teacher]
+verify_jwt = false
+
+[functions.handle-homework-reply]
+verify_jwt = false
+
+[functions.create-parent]
+verify_jwt = false
