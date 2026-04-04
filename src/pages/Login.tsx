@@ -52,7 +52,7 @@ export default function Login() {
   const [isChangingPassword, setIsChangingPassword] = useState(false);
   const [pendingUserId, setPendingUserId] = useState<string | null>(null);
 
-  const DASHBOARDS: Record<string, string> = {
+  const ROLE_HOME: Record<string, string> = {
     admin: '/dashboard',
     super_admin: '/super-admin/dashboard',
     teacher: '/dashboard-teacher',
@@ -63,7 +63,7 @@ export default function Login() {
 
   // If already authenticated, redirect at render time — no useEffect
   if (authInitialized && isAuthenticated && role) {
-    return <Navigate to={DASHBOARDS[role] || '/dashboard'} replace />;
+    return <Navigate to={ROLE_HOME[role] || '/dashboard'} replace />;
   }
 
 
@@ -134,7 +134,7 @@ export default function Login() {
       }
 
       // Redirect immediately after successful login — no useEffect
-      navigate(DASHBOARDS[userRole!] || '/dashboard', { replace: true });
+      navigate(ROLE_HOME[userRole!] || '/dashboard', { replace: true });
 
       
     } catch (error) {
@@ -191,7 +191,7 @@ export default function Login() {
         .single();
 
       const userRoleAfterPwChange = roleData?.role as UserRole;
-      navigate(DASHBOARDS[userRoleAfterPwChange] || '/dashboard', { replace: true });
+      navigate(ROLE_HOME[userRoleAfterPwChange] || '/dashboard', { replace: true });
 
 
     } catch (error) {
