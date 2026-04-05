@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
+import { useDisplayName } from '@/hooks/useDisplayName';
 import { supabase } from '@/integrations/supabase/client';
 import { useNavigate } from 'react-router-dom';
 import { FileSignature } from 'lucide-react';
@@ -30,7 +31,8 @@ import {
 } from 'lucide-react';
 
 export default function Dashboard() {
-  const { profile, role } = useAuth();
+  const { role } = useAuth();
+  const { displayName } = useDisplayName();
   const { classes } = useClasses();
   const navigate = useNavigate();
 
@@ -97,7 +99,7 @@ export default function Dashboard() {
       <div className="animate-fade-up flex flex-col md:flex-row md:items-start justify-between gap-4">
         <div>
           <h1 className="font-display text-3xl font-bold text-foreground">
-            {greeting()}, {profile?.fullName?.split(' ')[0] || 'User'}
+            {greeting()}, {displayName?.split(' ')[0] || 'User'}
           </h1>
           <p className="text-muted-foreground mt-1">Here's what's happening at your school today</p>
         </div>

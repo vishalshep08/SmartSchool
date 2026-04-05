@@ -12,6 +12,7 @@ import {
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useSchoolName } from '@/hooks/useSchoolSettings';
+import { useDisplayName } from '@/hooks/useDisplayName';
 
 const links = [
   { to: '/super-admin/dashboard', icon: ScrollText, label: 'Activity Log' },
@@ -19,7 +20,8 @@ const links = [
 ];
 
 export function SuperAdminSidebar() {
-  const { profile, logout } = useAuth();
+  const { logout } = useAuth();
+  const { displayName } = useDisplayName();
   const location = useLocation();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
@@ -43,11 +45,11 @@ export function SuperAdminSidebar() {
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-sidebar-accent flex items-center justify-center">
             <span className="text-sm font-medium text-sidebar-foreground">
-              {profile?.fullName?.split(' ').map(n => n[0]).join('') || '?'}
+              {displayName?.split(' ').map(n => n[0]).join('') || '?'}
             </span>
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-sidebar-foreground truncate">{profile?.fullName || 'Super Admin'}</p>
+            <p className="text-sm font-medium text-sidebar-foreground truncate">{displayName || 'Super Admin'}</p>
             <p className="text-xs text-sidebar-foreground/60">Super Admin</p>
           </div>
         </div>

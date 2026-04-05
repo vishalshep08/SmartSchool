@@ -215,7 +215,7 @@ export default function Login() {
     <div className="min-h-screen bg-background flex">
       {/* Left Side - Branding */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden" 
-        style={{ background: 'linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(240 80% 60%) 100%)' }}>
+        style={{ background: 'linear-gradient(135deg, hsl(245, 75%, 52%) 0%, hsl(14, 90%, 60%) 100%)' }}>
         
         <div className="relative z-10 flex flex-col justify-center px-12 lg:px-16">
           <div className="animate-fade-up">

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
+import { useDisplayName } from '@/hooks/useDisplayName';
 import { useParentData } from '@/hooks/useParentData';
 import { useParentDashboardData } from '@/hooks/useParentDashboardData';
 import { useParentAnalytics } from '@/hooks/useParentAnalytics';
@@ -47,7 +48,7 @@ const activityIcons: Record<string, typeof CalendarCheck> = {
 };
 
 export default function ParentDashboard() {
-  const { profile } = useAuth();
+  const { displayName } = useDisplayName();
   const { linkedStudents, isLoading } = useParentData();
   const [selectedChildIndex, setSelectedChildIndex] = useState(0);
   const selectedChild = linkedStudents[selectedChildIndex] || null;
@@ -76,7 +77,7 @@ export default function ParentDashboard() {
       <Card className="bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20">
         <CardContent className="py-6">
           <h1 className="font-display text-2xl font-bold text-foreground">
-            {getGreeting()}, {profile?.fullName || 'Parent'} 👋
+            {getGreeting()}, {displayName || 'Parent'} 👋
           </h1>
           <p className="text-muted-foreground mt-1">{todayFormatted}</p>
         </CardContent>

@@ -1,4 +1,5 @@
 import { useAuth } from '@/contexts/AuthContext';
+import { useDisplayName } from '@/hooks/useDisplayName';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -31,7 +32,8 @@ import {
 } from 'lucide-react';
 
 export default function DashboardTeacher() {
-  const { profile, user } = useAuth();
+  const { user } = useAuth();
+  const { displayName } = useDisplayName();
   const navigate = useNavigate();
   const { teachers } = useTeachers();
   const { leaves } = useLeaves();
@@ -192,7 +194,7 @@ export default function DashboardTeacher() {
       {/* Header */}
       <div className="animate-fade-up">
         <h1 className="font-display text-3xl font-bold text-foreground">
-          {greeting()}, {profile?.fullName?.split(' ')[0] || 'Teacher'}
+          {greeting()}, {displayName?.split(' ')[0] || 'Teacher'}
         </h1>
         <p className="text-muted-foreground mt-1">
           {formatDateIndian(todayDate)} • Welcome to your dashboard

@@ -23,9 +23,11 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { supabase } from '@/integrations/supabase/client';
 import { useSchoolName } from '@/hooks/useSchoolSettings';
+import { useDisplayName } from '@/hooks/useDisplayName';
 
 export function StaffSidebar() {
-  const { profile, logout, user } = useAuth();
+  const { logout, user } = useAuth();
+  const { displayName } = useDisplayName();
   const location = useLocation();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [employeeDetails, setEmployeeDetails] = useState<any>(null);
@@ -162,11 +164,11 @@ export function StaffSidebar() {
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-sidebar-accent flex items-center justify-center">
             <span className="text-sm font-medium text-sidebar-foreground">
-              {profile?.fullName?.split(' ').map(n => n[0]).join('') || '?'}
+              {displayName?.split(' ').map(n => n[0]).join('') || '?'}
             </span>
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-sidebar-foreground truncate">{profile?.fullName || 'Staff'}</p>
+            <p className="text-sm font-medium text-sidebar-foreground truncate">{displayName || 'Staff'}</p>
             <p className="text-xs text-sidebar-foreground/60">{employeeDetails?.department || 'Staff'}</p>
           </div>
         </div>

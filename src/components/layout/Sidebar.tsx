@@ -29,6 +29,7 @@ import {
   Briefcase,
   ClipboardList,
   LibraryBig,
+  MessageSquare,
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
@@ -37,6 +38,7 @@ import { useTeachers } from '@/hooks/useTeachers';
 import { useTeacherClassAssignments } from '@/hooks/useTeacherPermissions';
 import { supabase } from '@/integrations/supabase/client';
 import { FileText } from 'lucide-react';
+import { useDisplayName } from '@/hooks/useDisplayName';
 
 const principalLinks = [
   { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -61,6 +63,7 @@ const teacherLinks = [
   { to: '/attendance', icon: CalendarCheck, label: 'Attendance' },
   { to: '/homework', icon: BookOpen, label: 'Homework' },
   { to: '/study-materials', icon: LibraryBig, label: 'Study Materials' },
+  { to: '/remarks', icon: MessageSquare, label: 'Remarks' },
   { to: '/leaves', icon: CalendarOff, label: 'My Leaves' },
   { to: '/issues', icon: MessageSquareWarning, label: 'My Issues' },
   { to: '/notices', icon: Bell, label: 'Notices' },
@@ -69,7 +72,8 @@ const teacherLinks = [
 ];
 
 export function Sidebar() {
-  const { profile, role, logout, user } = useAuth();
+  const { role, logout, user } = useAuth();
+  const { displayName } = useDisplayName();
   const location = useLocation();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
@@ -155,11 +159,11 @@ export function Sidebar() {
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-sidebar-accent flex items-center justify-center">
             <span className="text-sm font-medium text-sidebar-foreground">
-              {profile?.fullName?.split(' ').map(n => n[0]).join('') || '?'}
+              {displayName?.split(' ').map(n => n[0]).join('') || '?'}
             </span>
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-sidebar-foreground truncate">{profile?.fullName || 'User'}</p>
+            <p className="text-sm font-medium text-sidebar-foreground truncate">{displayName || 'User'}</p>
             <p className="text-xs text-sidebar-foreground/60 capitalize">{role}</p>
           </div>
         </div>

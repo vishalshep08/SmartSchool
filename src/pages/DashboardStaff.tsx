@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
+import { useDisplayName } from '@/hooks/useDisplayName';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -27,7 +28,8 @@ import {
 } from '@/components/staff/DepartmentDashboards';
 
 export default function DashboardStaff() {
-  const { profile, user } = useAuth();
+  const { user } = useAuth();
+  const { displayName } = useDisplayName();
   const navigate = useNavigate();
   const { leaves } = useLeaves();
   
@@ -128,7 +130,7 @@ export default function DashboardStaff() {
       {/* Header */}
       <div className="animate-fade-up">
         <h1 className="font-display text-3xl font-bold text-foreground">
-          {greeting()}, {profile?.fullName?.split(' ')[0] || 'Staff'} — {designation || 'Staff'}, {dept}
+          {greeting()}, {displayName?.split(' ')[0] || 'Staff'} — {designation || 'Staff'}, {dept}
         </h1>
         <p className="text-muted-foreground mt-1">
           {formatDateIndian(todayDate)} • Welcome to the Staff Portal

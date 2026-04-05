@@ -52,6 +52,7 @@ import PrincipalDocumentApprovals from "./pages/principal/PrincipalDocumentAppro
 import StudyMaterials from "./pages/StudyMaterials";
 import ParentStudyMaterials from "./pages/ParentStudyMaterials";
 import ParentAnalytics from "./pages/ParentAnalytics";
+import TeacherRemarks from "./pages/teacher/TeacherRemarks";
 
 import { Loader2 } from "lucide-react";
 import { Loader } from "@/components/ui/loader";
@@ -226,6 +227,7 @@ function AppRoutes() {
         <Route path="attendance" element={<Attendance />} />
         <Route path="homework" element={<ProtectedRoute allowedRoles={["teacher"]}><Homework /></ProtectedRoute>} />
         <Route path="study-materials" element={<ProtectedRoute allowedRoles={["teacher"]}><StudyMaterials /></ProtectedRoute>} />
+        <Route path="remarks" element={<ProtectedRoute allowedRoles={["teacher"]}><TeacherRemarks /></ProtectedRoute>} />
         <Route path="leaves" element={<Leaves />} />
         <Route path="class-leaves" element={<ProtectedRoute allowedRoles={["teacher"]}><TeacherLeaveRequests /></ProtectedRoute>} />
         <Route path="issues" element={<Issues />} />
