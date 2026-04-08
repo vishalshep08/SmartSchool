@@ -525,7 +525,11 @@ const CHATBOT_STYLES = `
   }
   .sarthi-panel.minimized { height: 64px !important; }
   @keyframes sarthi-slide-up { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-  @media (max-width: 480px) { .sarthi-panel { width: 100%; right: 0; bottom: 0; border-radius: 20px 20px 0 0; height: 85vh !important; } }
+  
+  @media (max-width: 767px) { 
+    .sarthi-fab { bottom: 84px !important; right: 16px !important; }
+    .sarthi-panel { width: 100%; right: 0; bottom: 0; border-radius: 20px 20px 0 0; height: 85vh !important; } 
+  }
 
   .sarthi-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; flex-shrink: 0; background: hsl(var(--primary)); }
   .sarthi-header-left { display: flex; align-items: center; gap: 12px; }
