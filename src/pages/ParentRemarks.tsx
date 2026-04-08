@@ -65,7 +65,7 @@ export default function ParentRemarks() {
 
   return (
     <div className="space-y-6 animate-fade-up">
-      <h1 className="font-display text-2xl font-bold text-foreground">
+      <h1 className="font-heading text-2xl font-bold text-foreground">
         Remarks — {selectedChild?.full_name || 'Select Child'}
       </h1>
 

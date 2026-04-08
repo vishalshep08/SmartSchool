@@ -4,8 +4,13 @@ import { cn } from "@/lib/utils";
 
 const Table = React.forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(
   ({ className, ...props }, ref) => (
-    <div className="relative w-full overflow-auto">
-      <table ref={ref} className={cn("w-full caption-bottom text-sm", className)} {...props} />
+    <div className="w-full">
+      <div className="md:hidden text-[11px] text-muted-foreground italic mb-1 flex items-center gap-1 opacity-70">
+        <span aria-hidden="true">←</span> Scroll horizontally to see more
+      </div>
+      <div className="relative w-full overflow-x-auto touch-pan-x" style={{ WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none' }}>
+        <table ref={ref} className={cn("w-full caption-bottom text-sm min-w-[600px]", className)} {...props} />
+      </div>
     </div>
   ),
 );

@@ -14,12 +14,15 @@ import { Loader2, FileText, CheckCircle, FileSignature, Upload, FileCheck, Arrow
 import { formatDateIndian } from '@/lib/dateUtils';
 import { useLocation } from 'react-router-dom';
 import { jsPDF } from 'jspdf';
+import { useSchoolSettings } from '@/hooks/useSchoolSettings';
 
 export default function ClerkDocumentRequestsPage() {
   const { user } = useAuth();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const initialTab = queryParams.get('tab') || 'pending';
+  const { schoolName, appSubtitle } = useSchoolSettings();
+  const appFullName = [schoolName, appSubtitle].filter(Boolean).join(' ');
 
   const [tab, setTab] = useState(initialTab);
   const [requests, setRequests] = useState<any[]>([]);
@@ -169,7 +172,7 @@ export default function ClerkDocumentRequestsPage() {
         format: 'a4',
       });
 
-      const schoolName = 'SmartSchool'; // replace with actual school name from settings
+      const docSchoolName = schoolName;
       const pageWidth = doc.internal.pageSize.getWidth();
       const today = new Date().toLocaleDateString('en-IN', {
         day: '2-digit', month: 'long', year: 'numeric'
@@ -178,7 +181,7 @@ export default function ClerkDocumentRequestsPage() {
       // Header
       doc.setFontSize(20);
       doc.setFont('helvetica', 'bold');
-      doc.text(schoolName, pageWidth / 2, 20, { align: 'center' });
+      doc.text(docSchoolName, pageWidth / 2, 20, { align: 'center' });
 
       doc.setFontSize(12);
       doc.setFont('helvetica', 'normal');
@@ -463,7 +466,7 @@ export default function ClerkDocumentRequestsPage() {
     <div className="space-y-6 animate-fade-up">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-3xl font-bold text-foreground">Document Requests</h1>
+          <h1 className="font-heading text-3xl font-bold text-foreground">Document Requests</h1>
           <p className="text-muted-foreground mt-1">Review, forward, and issue student and staff document requests.</p>
         </div>
       </div>
@@ -640,7 +643,7 @@ export default function ClerkDocumentRequestsPage() {
                 </div>
                 <div className="text-sm space-y-3 bg-white p-4 border rounded shadow-sm">
                   <div className="flex justify-between border-b pb-2">
-                    <span className="font-bold text-base">SmartSchool ERP</span>
+                    <span className="font-bold text-base">{appFullName}</span>
                     <span className="text-muted-foreground">Date: {formatDateIndian(new Date())}</span>
                   </div>
                   <div className="text-center font-semibold underline my-2">

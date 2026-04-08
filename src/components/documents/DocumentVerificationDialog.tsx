@@ -54,7 +54,7 @@ export function DocumentVerificationDialog({ open, onOpenChange, document }: Pro
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle className="font-display">Verify Document</DialogTitle>
+          <DialogTitle className="font-heading">Verify Document</DialogTitle>
         </DialogHeader>
 
         <div className="space-y-4 mt-2">

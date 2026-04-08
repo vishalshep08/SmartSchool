@@ -116,7 +116,7 @@ export default function Homework() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 animate-fade-up">
         <div>
-          <h1 className="font-display text-3xl font-bold text-foreground">Homework</h1>
+          <h1 className="font-heading text-3xl font-bold text-foreground">Homework</h1>
           <p className="text-muted-foreground mt-1">Assign and track homework submissions</p>
         </div>
         
@@ -130,7 +130,7 @@ export default function Homework() {
             </DialogTrigger>
             <DialogContent className="sm:max-w-lg">
               <DialogHeader>
-                <DialogTitle className="font-display">Assign New Homework</DialogTitle>
+                <DialogTitle className="font-heading">Assign New Homework</DialogTitle>
               </DialogHeader>
               <form onSubmit={handleCreateHomework} className="space-y-4 mt-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -237,7 +237,7 @@ export default function Homework() {
       {homework.length === 0 ? (
         <div className="glass-card p-12 text-center animate-fade-up">
           <BookOpen className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-          <h3 className="font-display font-semibold text-foreground mb-2">No homework found</h3>
+          <h3 className="font-heading font-semibold text-foreground mb-2">No homework found</h3>
           <p className="text-muted-foreground text-sm">
             {canManageHomework ? 'Assign your first homework to get started.' : 'No homework has been assigned yet.'}
           </p>
@@ -261,7 +261,7 @@ export default function Homework() {
                         <BookOpen className="w-6 h-6 text-primary" />
                       </div>
                       <div>
-                        <h3 className="font-display font-semibold text-foreground">{hw.title}</h3>
+                        <h3 className="font-heading font-semibold text-foreground">{hw.title}</h3>
                         <div className="flex items-center gap-2 mt-1">
                           <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium">
                             {hw.classes?.name} {hw.classes?.section && `- ${hw.classes.section}`}
@@ -324,7 +324,7 @@ export default function Homework() {
             <FileText className="w-6 h-6 text-primary" />
           </div>
           <div className="flex-1 text-center sm:text-left">
-            <h3 className="font-display font-semibold text-foreground">Email Notifications Active</h3>
+            <h3 className="font-heading font-semibold text-foreground">Email Notifications Active</h3>
             <p className="text-sm text-muted-foreground mt-1">Parents are automatically notified via email when new homework is assigned.</p>
           </div>
         </div>

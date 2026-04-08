@@ -86,7 +86,7 @@ export function DocumentUploadDialog({ open, onOpenChange, studentId, studentNam
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
-          <DialogTitle className="font-display">Upload Document</DialogTitle>
+          <DialogTitle className="font-heading">Upload Document</DialogTitle>
         </DialogHeader>
         <p className="text-sm text-muted-foreground">
           Uploading for <span className="font-medium text-foreground">{studentName}</span>

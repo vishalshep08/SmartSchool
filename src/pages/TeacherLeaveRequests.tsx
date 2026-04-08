@@ -168,7 +168,7 @@ export default function TeacherLeaveRequests() {
     <div className="space-y-6 animate-fade-up">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-3xl font-bold text-foreground">Student Leave Requests</h1>
+          <h1 className="font-heading text-3xl font-bold text-foreground">Student Leave Requests</h1>
           <p className="text-muted-foreground mt-1">Manage leave requests from parents for your class.</p>
         </div>
       </div>

@@ -143,7 +143,7 @@ export default function ParentHomework() {
   return (
     <div className="space-y-6 animate-fade-up">
       <div>
-        <h1 className="font-display text-2xl font-bold text-foreground">
+        <h1 className="font-heading text-2xl font-bold text-foreground">
           Homework {selectedChild ? `— ${selectedChild.full_name}` : ''}
         </h1>
         <p className="text-muted-foreground mt-1">View homework assigned to your child's class</p>
@@ -246,7 +246,7 @@ export default function ParentHomework() {
       <Dialog open={!!selectedHw} onOpenChange={(open) => { if (!open) setSelectedHw(null); }}>
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>
-            <DialogTitle className="font-display">{selectedHw?.title}</DialogTitle>
+            <DialogTitle className="font-heading">{selectedHw?.title}</DialogTitle>
           </DialogHeader>
           {selectedHw && (
             <div className="space-y-4 mt-2">

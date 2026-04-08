@@ -193,7 +193,7 @@ export default function TeacherRemarks() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="font-display text-2xl font-bold text-foreground flex items-center gap-2">
+          <h1 className="font-heading text-2xl font-bold text-foreground flex items-center gap-2">
             <MessageSquare className="w-6 h-6 text-primary" />
             Student Remarks
           </h1>
@@ -221,7 +221,7 @@ export default function TeacherRemarks() {
             <div className="p-6">
               {/* Modal header */}
               <div className="flex items-center justify-between mb-5">
-                <h2 className="font-display text-lg font-semibold text-gray-900">Add New Remark</h2>
+                <h2 className="font-heading text-lg font-semibold text-gray-900">Add New Remark</h2>
                 <button
                   onClick={() => setShowForm(false)}
                   className="text-gray-400 hover:text-gray-600 transition-colors rounded-lg p-1"

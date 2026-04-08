@@ -87,13 +87,13 @@ export function EmployeeProfile({ employeeId, onBack }: EmployeeProfileProps) {
       <div className="glass-card p-6">
         <div className="flex flex-col sm:flex-row items-start gap-6">
           <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
-            <span className="text-3xl font-display font-bold text-primary">
+            <span className="text-3xl font-heading font-bold text-primary">
               {employee.profile?.full_name?.split(' ').map((n: string) => n[0]).join('').slice(0, 2) || '?'}
             </span>
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-1">
-              <h1 className="font-display text-2xl font-bold">{employee.profile?.full_name || emp.full_name || 'Unknown'}</h1>
+              <h1 className="font-heading text-2xl font-bold">{employee.profile?.full_name || emp.full_name || 'Unknown'}</h1>
               <Badge className={cn(
                 employee.is_active ? 'bg-success/10 text-success' : 'bg-muted text-muted-foreground'
               )}>

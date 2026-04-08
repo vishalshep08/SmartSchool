@@ -115,7 +115,7 @@ export default function ParentFees() {
                     <div className="glass-card p-4 animate-fade-up" style={{ animationDelay: '200ms' }}>
                         <div className="flex items-center justify-between">
                             <div>
-                                <h3 className="font-display font-semibold text-foreground">Payment History</h3>
+                                <h3 className="font-heading font-semibold text-foreground">Payment History</h3>
                                 <p className="text-sm text-muted-foreground">View all payments made for this fee record</p>
                             </div>
                             <button onClick={() => setShowHistory(currentFee.id)} className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors">

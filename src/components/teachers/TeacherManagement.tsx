@@ -244,7 +244,7 @@ export function TeacherManagement() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 animate-fade-up">
         <div>
-          <h1 className="font-display text-3xl font-bold text-foreground">Teachers</h1>
+          <h1 className="font-heading text-3xl font-bold text-foreground">Teachers</h1>
           <p className="text-muted-foreground mt-1">Manage teaching staff and assignments</p>
         </div>
         <Dialog open={isAddDialogOpen} onOpenChange={(open) => {
@@ -256,7 +256,7 @@ export function TeacherManagement() {
           </DialogTrigger>
           <DialogContent className="sm:max-w-lg max-h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle className="font-display">
+              <DialogTitle className="font-heading">
                 {step === 1 ? 'Step 1: Basic Information' : 'Step 2: Document Upload'}
               </DialogTitle>
               <DialogDescription>
@@ -413,7 +413,7 @@ export function TeacherManagement() {
       {filteredTeachers.length === 0 ? (
         <div className="glass-card p-12 text-center animate-fade-up">
           <BookOpen className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-          <h3 className="font-display font-semibold text-foreground mb-2">No teachers found</h3>
+          <h3 className="font-heading font-semibold text-foreground mb-2">No teachers found</h3>
           <p className="text-muted-foreground text-sm">
             {searchQuery ? 'Try adjusting your search query.' : 'Click "Add Teacher" to create the first teacher account.'}
           </p>
@@ -425,7 +425,7 @@ export function TeacherManagement() {
               <div className="h-20 relative" style={{ background: 'var(--gradient-primary)' }}>
                 <div className="absolute -bottom-8 left-6">
                   <div className="w-16 h-16 rounded-xl bg-card shadow-lg flex items-center justify-center border-4 border-card">
-                    <span className="text-xl font-display font-bold text-primary">
+                    <span className="text-xl font-heading font-bold text-primary">
                       {teacher.profile?.full_name?.split(' ').map((n: string) => n[0]).join('') || teacher.employee_id.slice(0, 2)}
                     </span>
                   </div>
@@ -447,7 +447,7 @@ export function TeacherManagement() {
               <div className="pt-12 pb-6 px-6">
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <h3 className="font-display font-semibold text-foreground">{teacher.profile?.full_name || `Teacher ${teacher.employee_id}`}</h3>
+                    <h3 className="font-heading font-semibold text-foreground">{teacher.profile?.full_name || `Teacher ${teacher.employee_id}`}</h3>
                     <p className="text-xs text-muted-foreground">{teacher.employee_id}</p>
                     <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium mt-2">
                       <BookOpen className="w-3 h-3" />{teacher.subject}
@@ -481,7 +481,7 @@ export function TeacherManagement() {
       {/* Edit Dialog */}
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
         <DialogContent className="sm:max-w-lg">
-          <DialogHeader><DialogTitle className="font-display">Edit Teacher Details</DialogTitle></DialogHeader>
+          <DialogHeader><DialogTitle className="font-heading">Edit Teacher Details</DialogTitle></DialogHeader>
           <form onSubmit={handleEdit} className="space-y-4 mt-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div><Label>Employee ID</Label><Input disabled value={formData.employee_id} className="mt-1.5" /></div>
@@ -505,17 +505,17 @@ export function TeacherManagement() {
       {/* View Dialog */}
       <Dialog open={isViewDialogOpen} onOpenChange={setIsViewDialogOpen}>
         <DialogContent className="sm:max-w-lg">
-          <DialogHeader><DialogTitle className="font-display">Teacher Profile</DialogTitle></DialogHeader>
+          <DialogHeader><DialogTitle className="font-heading">Teacher Profile</DialogTitle></DialogHeader>
           {selectedTeacher && (
             <div className="space-y-4 mt-4">
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
-                  <span className="text-2xl font-display font-bold text-primary">
+                  <span className="text-2xl font-heading font-bold text-primary">
                     {selectedTeacher.profile?.full_name?.split(' ').map((n: string) => n[0]).join('') || '?'}
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-display font-semibold text-foreground text-lg">{selectedTeacher.profile?.full_name || `Teacher ${selectedTeacher.employee_id}`}</h3>
+                  <h3 className="font-heading font-semibold text-foreground text-lg">{selectedTeacher.profile?.full_name || `Teacher ${selectedTeacher.employee_id}`}</h3>
                   <p className="text-muted-foreground">{selectedTeacher.employee_id}</p>
                 </div>
               </div>
@@ -539,7 +539,7 @@ export function TeacherManagement() {
       <Dialog open={isCredentialsDialogOpen} onOpenChange={setIsCredentialsDialogOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="font-display flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-success" />Teacher Account Created!</DialogTitle>
+            <DialogTitle className="font-heading flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-success" />Teacher Account Created!</DialogTitle>
             <DialogDescription>Save these credentials. The password will not be shown again.</DialogDescription>
           </DialogHeader>
           {createdTeacher && (

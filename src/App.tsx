@@ -53,6 +53,7 @@ import StudyMaterials from "./pages/StudyMaterials";
 import ParentStudyMaterials from "./pages/ParentStudyMaterials";
 import ParentAnalytics from "./pages/ParentAnalytics";
 import TeacherRemarks from "./pages/teacher/TeacherRemarks";
+import SchoolSettingsPage from "./pages/principal/SchoolSettingsPage";
 
 import { Loader2 } from "lucide-react";
 import { Loader } from "@/components/ui/loader";
@@ -113,8 +114,8 @@ class ErrorBoundary extends React.Component<
     super(props);
     this.state = { hasError: false };
   }
-  static getDerivedStateFromError() {
-    return { hasError: true };
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
   }
   componentDidCatch(error: Error) {
     console.error('ErrorBoundary caught:', error);
@@ -122,11 +123,16 @@ class ErrorBoundary extends React.Component<
   render() {
     if (this.state.hasError) {
       return this.props.fallback || (
-        <div className="flex flex-col items-center justify-center h-64 gap-4">
-          <p className="text-muted-foreground">Something went wrong loading this section.</p>
+        <div className="flex flex-col items-center justify-center min-h-[50vh] p-8 gap-4 bg-red-50 text-red-900 border border-red-200 m-8 rounded-lg">
+          <p className="font-bold text-lg">Something went wrong loading this section.</p>
+          <pre className="text-xs text-left w-full overflow-auto p-4 bg-white/50 rounded border border-red-100 max-h-64">
+            {this.state.error?.message}
+            {'\n'}
+            {this.state.error?.stack}
+          </pre>
           <button
             onClick={() => window.location.reload()}
-            className="px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm"
+            className="px-4 py-2 rounded-md bg-red-600 text-white font-medium hover:bg-red-700 transition"
           >
             Reload Page
           </button>
@@ -207,6 +213,7 @@ function AppRoutes() {
         <Route path="salary" element={<Salary />} />
         <Route path="profile" element={<Profile />} />
         <Route path="document-requests" element={<ClerkDocumentRequestsPage />} />
+        <Route path="student-records" element={<Students />} />
       </Route>
       {/* Admin & Teacher routes */}
       <Route
@@ -242,6 +249,7 @@ function AppRoutes() {
         <Route path="announcements" element={<ProtectedRoute allowedRoles={["principal"]}><Announcements /></ProtectedRoute>} />
         <Route path="reports" element={<ProtectedRoute allowedRoles={["principal"]}><Reports /></ProtectedRoute>} />
         <Route path="settings" element={<ProtectedRoute allowedRoles={["principal"]}><Settings /></ProtectedRoute>} />
+        <Route path="school-settings" element={<ProtectedRoute allowedRoles={["principal"]}><SchoolSettingsPage /></ProtectedRoute>} />
       </Route>
       {/* Legacy redirects */}
       <Route path="/teachers" element={<Navigate to="/staff" replace />} />

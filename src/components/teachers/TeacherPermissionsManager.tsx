@@ -85,7 +85,7 @@ export function TeacherPermissionsManager({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="font-display flex items-center gap-2">
+          <DialogTitle className="font-heading flex items-center gap-2">
             <Settings className="w-5 h-5" />
             Manage Permissions - {teacherName}
           </DialogTitle>

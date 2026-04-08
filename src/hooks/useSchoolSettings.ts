@@ -9,26 +9,35 @@ export interface SchoolSettingsData {
   address: string;
   academicYear: string;
   sessionStartDate: string;
+  appSubtitle: string;
+  logoUrl: string;
 }
 
-const DEFAULTS: SchoolSettingsData = {
-  schoolName: 'SmartSchool',
-  schoolCode: 'SSA-2024',
-  email: 'admin@smartschool.edu',
-  phone: '+91 98765 43210',
-  address: '123 Education Street, Learning City, India - 110001',
-  academicYear: '2024-2025',
-  sessionStartDate: '2024-04-01',
+// Default fallback object — all empty strings, never hardcoded branding
+const DEFAULT_SCHOOL_SETTINGS: SchoolSettingsData = {
+  schoolName: '',
+  schoolCode: '',
+  email: '',
+  phone: '',
+  address: '',
+  academicYear: '',
+  sessionStartDate: '',
+  appSubtitle: '',
+  logoUrl: '',
 };
 
+const QUERY_KEY = ['school-settings', 'school'];
+
 /**
- * Lightweight hook used throughout the app to read the current school settings.
- * Settings are written by Settings.tsx via useSettings → school_settings table.
- * This hook simply reads them with a 10-minute cache so any page can use them.
+ * Single source of truth for school settings.
+ * Fetches from school_settings where setting_key = 'school'.
+ * Exposes a refetch() so the settings panel can refresh the whole app after save.
  */
-export function useSchoolSettings(): SchoolSettingsData {
+export function useSchoolSettings(): SchoolSettingsData & { refetch: () => void } {
+  const queryClient = useQueryClient();
+
   const { data } = useQuery({
-    queryKey: ['school-settings', 'school'],
+    queryKey: QUERY_KEY,
     queryFn: async () => {
       const { data, error } = await supabase
         .from('school_settings')
@@ -36,13 +45,17 @@ export function useSchoolSettings(): SchoolSettingsData {
         .eq('setting_key', 'school')
         .single();
 
-      if (error || !data) return DEFAULTS;
-      return { ...DEFAULTS, ...(data.setting_value as unknown as Partial<SchoolSettingsData>) };
+      if (error || !data) return DEFAULT_SCHOOL_SETTINGS;
+      return { ...DEFAULT_SCHOOL_SETTINGS, ...(data.setting_value as unknown as Partial<SchoolSettingsData>) };
     },
     staleTime: 1000 * 60 * 10, // 10 minutes
   });
 
-  return data ?? DEFAULTS;
+  const refetch = () => {
+    queryClient.invalidateQueries({ queryKey: QUERY_KEY });
+  };
+
+  return { ...(data ?? DEFAULT_SCHOOL_SETTINGS), refetch };
 }
 
 /**
@@ -50,6 +63,6 @@ export function useSchoolSettings(): SchoolSettingsData {
  * Use this in sidebars, headers, PDF templates etc.
  */
 export function useSchoolName(): string {
-  const settings = useSchoolSettings();
-  return settings.schoolName || 'SmartSchool';
+  const { schoolName } = useSchoolSettings();
+  return schoolName;
 }

@@ -9,7 +9,7 @@ export default function ParentComingSoon() {
           <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
             <Construction className="w-8 h-8 text-primary" />
           </div>
-          <h2 className="text-xl font-display font-bold text-foreground">Coming Soon</h2>
+          <h2 className="text-xl font-heading font-bold text-foreground">Coming Soon</h2>
           <p className="text-muted-foreground">
             This feature is under development and will be available soon. Stay tuned!
           </p>

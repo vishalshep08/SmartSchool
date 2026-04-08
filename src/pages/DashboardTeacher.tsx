@@ -193,7 +193,7 @@ export default function DashboardTeacher() {
     <div className="space-y-6">
       {/* Header */}
       <div className="animate-fade-up">
-        <h1 className="font-display text-3xl font-bold text-foreground">
+        <h1 className="font-heading text-3xl font-bold text-foreground">
           {greeting()}, {displayName?.split(' ')[0] || 'Teacher'}
         </h1>
         <p className="text-muted-foreground mt-1">

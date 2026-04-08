@@ -142,7 +142,7 @@ export default function Salary() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 animate-fade-up">
         <div>
-          <h1 className="font-display text-3xl font-bold text-foreground">Salary Management</h1>
+          <h1 className="font-heading text-3xl font-bold text-foreground">Salary Management</h1>
           <p className="text-muted-foreground mt-1">Process and track staff salaries</p>
         </div>
         <div className="flex gap-3">
@@ -279,7 +279,7 @@ export default function Salary() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-muted-foreground">Total Salary</p>
-              <p className="text-2xl font-display font-bold text-foreground mt-1">
+              <p className="text-2xl font-heading font-bold text-foreground mt-1">
                 {formatCurrencyINR(totalSalary)}
               </p>
             </div>
@@ -293,7 +293,7 @@ export default function Salary() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-muted-foreground">Total Staff</p>
-              <p className="text-2xl font-display font-bold text-foreground mt-1">
+              <p className="text-2xl font-heading font-bold text-foreground mt-1">
                 {teacherProfiles.length}
               </p>
             </div>
@@ -307,7 +307,7 @@ export default function Salary() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-muted-foreground">Paid</p>
-              <p className="text-2xl font-display font-bold text-foreground mt-1">{paidCount}</p>
+              <p className="text-2xl font-heading font-bold text-foreground mt-1">{paidCount}</p>
             </div>
             <div className="w-10 h-10 rounded-lg bg-success/10 flex items-center justify-center">
               <CheckCircle className="w-5 h-5 text-success" />
@@ -319,7 +319,7 @@ export default function Salary() {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-muted-foreground">Pending</p>
-              <p className="text-2xl font-display font-bold text-foreground mt-1">{pendingCount}</p>
+              <p className="text-2xl font-heading font-bold text-foreground mt-1">{pendingCount}</p>
             </div>
             <div className="w-10 h-10 rounded-lg bg-warning/10 flex items-center justify-center">
               <Clock className="w-5 h-5 text-warning" />
@@ -337,7 +337,7 @@ export default function Salary() {
         ) : salaryRecords.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-64">
             <IndianRupee className="w-12 h-12 text-muted-foreground mb-4" />
-            <h3 className="font-display font-semibold text-foreground">No Salary Records</h3>
+            <h3 className="font-heading font-semibold text-foreground">No Salary Records</h3>
             <p className="text-sm text-muted-foreground mt-1">
               No salary records found for {formatMonthYear(parseInt(selectedMonth), parseInt(selectedYear))}
             </p>
@@ -447,7 +447,7 @@ export default function Salary() {
             <TrendingUp className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h3 className="font-display font-semibold text-foreground">Salary Insights</h3>
+            <h3 className="font-heading font-semibold text-foreground">Salary Insights</h3>
             <p className="text-sm text-muted-foreground mt-1">
               Total payroll for {formatMonthYear(parseInt(selectedMonth), parseInt(selectedYear))}: 
               <span className="font-semibold text-foreground ml-1">{formatCurrencyINR(totalSalary)}</span>

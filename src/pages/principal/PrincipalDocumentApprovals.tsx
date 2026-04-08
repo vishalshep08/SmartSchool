@@ -257,7 +257,7 @@ export default function PrincipalDocumentApprovals() {
     <div className="space-y-6 animate-fade-up max-w-[1200px] mx-auto py-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-display text-3xl font-bold text-foreground">Document Approvals</h1>
+          <h1 className="font-heading text-3xl font-bold text-foreground">Document Approvals</h1>
           <p className="text-muted-foreground mt-1">Review and digitally sign document certificates requested by parents.</p>
         </div>
       </div>

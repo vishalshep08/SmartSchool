@@ -24,6 +24,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useQueryClient } from '@tanstack/react-query';
 import { ALL_DOCUMENT_TYPES, DOCUMENT_TYPE_LABELS, validateFile, type DocumentType } from '@/hooks/useStudentDocuments';
 import { Progress } from '@/components/ui/progress';
+import { useSchoolSettings } from '@/hooks/useSchoolSettings';
 
 interface StudentCreateDialogProps {
   open: boolean;
@@ -54,6 +55,8 @@ interface CreatedStudentInfo {
 export function StudentCreateDialog({ open, onOpenChange, classes }: StudentCreateDialogProps) {
   const { user } = useAuth();
   const queryClient = useQueryClient();
+  const { schoolName, appSubtitle } = useSchoolSettings();
+  const appFullName = [schoolName, appSubtitle].filter(Boolean).join(' ');
   const [step, setStep] = useState<1 | 2>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
@@ -304,7 +307,7 @@ export function StudentCreateDialog({ open, onOpenChange, classes }: StudentCrea
 
     const content = `
 ==========================================
-       SMARTSCHOOL - PARENT PORTAL
+${appFullName ? `       ${appFullName.toUpperCase()}` : '       PARENT PORTAL'}
        LOGIN CREDENTIALS CARD
 ==========================================
 
@@ -328,7 +331,7 @@ Login URL:       ${window.location.origin}/login
 Date of Issue:   ${new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}
 
 ==========================================
-    SmartSchool ERP System
+    ${appFullName}
 ==========================================
     `.trim();
 
@@ -341,6 +344,7 @@ Date of Issue:   ${new Date().toLocaleDateString('en-IN', { day: '2-digit', mont
     URL.revokeObjectURL(url);
     toast.success('Credentials card downloaded!');
   };
+
 
   const handleCreateAnother = () => {
     setShowSuccessModal(false);
@@ -391,7 +395,7 @@ Date of Issue:   ${new Date().toLocaleDateString('en-IN', { day: '2-digit', mont
             <div className="w-16 h-16 rounded-full bg-success/10 flex items-center justify-center mx-auto">
               <CheckCircle2 className="w-8 h-8 text-success" />
             </div>
-            <h2 className="text-xl font-display font-bold text-foreground">Student Created Successfully</h2>
+            <h2 className="text-xl font-heading font-bold text-foreground">Student Created Successfully</h2>
 
             <div className="bg-muted/50 rounded-lg p-4 text-left space-y-2">
               <div className="flex justify-between text-sm">
@@ -450,7 +454,7 @@ Date of Issue:   ${new Date().toLocaleDateString('en-IN', { day: '2-digit', mont
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="font-display">
+          <DialogTitle className="font-heading">
             Add New Student — Step {step} of 2
           </DialogTitle>
           <DialogDescription>

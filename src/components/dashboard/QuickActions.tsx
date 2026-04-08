@@ -51,7 +51,7 @@ const actions = [
 export function QuickActions() {
   return (
     <div className="glass-card p-6 animate-fade-up">
-      <h3 className="font-display font-semibold text-foreground mb-4">Quick Actions</h3>
+      <h3 className="font-heading font-semibold text-foreground mb-4">Quick Actions</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-3 gap-3">
         {actions.map((action, index) => {
           const Icon = action.icon;

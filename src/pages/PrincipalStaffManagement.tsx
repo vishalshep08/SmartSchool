@@ -497,7 +497,7 @@ function EmployeeDetailView({ employeeId, onBack }: { employeeId: string; onBack
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-1">
-              <h1 className="font-display text-2xl font-bold">{employee.profile?.full_name || 'Unknown'}</h1>
+              <h1 className="font-heading text-2xl font-bold">{employee.profile?.full_name || 'Unknown'}</h1>
               <Badge className={cn(employee.is_active ? 'bg-success/10 text-success' : 'bg-muted text-muted-foreground')}>
                 {employee.is_active ? 'Active' : 'Inactive'}
               </Badge>
@@ -786,7 +786,7 @@ export default function PrincipalStaffManagement() {
   return (
     <div className="space-y-6">
       <div className="glass-card p-6">
-        <h1 className="font-display text-2xl font-bold mb-1">Staff Management</h1>
+        <h1 className="font-heading text-2xl font-bold mb-1">Staff Management</h1>
         <p className="text-muted-foreground">View and manage all school employees</p>
       </div>
 

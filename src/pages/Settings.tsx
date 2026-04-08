@@ -39,7 +39,7 @@ export default function Settings() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 animate-fade-up">
         <div>
-          <h1 className="font-display text-3xl font-bold text-foreground">Settings</h1>
+          <h1 className="font-heading text-3xl font-bold text-foreground">Settings</h1>
           <p className="text-muted-foreground mt-1">Configure your school management system</p>
         </div>
         <Button variant="gradient" className="gap-2" onClick={saveSettings} disabled={isSaving}>
@@ -74,7 +74,7 @@ export default function Settings() {
 
         <TabsContent value="school" className="space-y-6">
           <div className="glass-card p-6 animate-fade-up" style={{ animationDelay: '100ms' }}>
-            <h3 className="font-display font-semibold text-foreground mb-4">School Information</h3>
+            <h3 className="font-heading font-semibold text-foreground mb-4">School Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <Label>School Name</Label>
@@ -117,11 +117,20 @@ export default function Settings() {
                   className="mt-1.5" 
                 />
               </div>
+              <div className="md:col-span-2">
+                <Label>App Subtitle <span className="text-muted-foreground text-xs">(shown in sidebar &amp; login — e.g. "School Management System")</span></Label>
+                <Input 
+                  value={(settings.school as any).appSubtitle || ''}
+                  onChange={(e) => updateSchoolSettings({ appSubtitle: e.target.value } as any)}
+                  placeholder="School Management System"
+                  className="mt-1.5" 
+                />
+              </div>
             </div>
           </div>
 
           <div className="glass-card p-6 animate-fade-up" style={{ animationDelay: '150ms' }}>
-            <h3 className="font-display font-semibold text-foreground mb-4">Academic Year</h3>
+            <h3 className="font-heading font-semibold text-foreground mb-4">Academic Year</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <Label>Current Academic Year</Label>
@@ -144,7 +153,7 @@ export default function Settings() {
           </div>
 
           <div className="glass-card p-6 animate-fade-up" style={{ animationDelay: '200ms' }}>
-            <h3 className="font-display font-semibold text-foreground mb-4">Regional Settings</h3>
+            <h3 className="font-heading font-semibold text-foreground mb-4">Regional Settings</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="p-4 rounded-lg bg-muted/50">
                 <p className="text-xs text-muted-foreground">Date Format</p>
@@ -164,7 +173,7 @@ export default function Settings() {
 
         <TabsContent value="notifications" className="space-y-6">
           <div className="glass-card p-6 animate-fade-up" style={{ animationDelay: '100ms' }}>
-            <h3 className="font-display font-semibold text-foreground mb-4">Notification Preferences</h3>
+            <h3 className="font-heading font-semibold text-foreground mb-4">Notification Preferences</h3>
             <div className="space-y-6">
               {[
                 { key: 'attendanceAlerts', label: 'Attendance Alerts', description: 'Notify parents when student is marked absent' },
@@ -192,7 +201,7 @@ export default function Settings() {
           </div>
 
           <div className="glass-card p-6 animate-fade-up" style={{ animationDelay: '200ms' }}>
-            <h3 className="font-display font-semibold text-foreground mb-4">Notification Channels</h3>
+            <h3 className="font-heading font-semibold text-foreground mb-4">Notification Channels</h3>
             <div className="space-y-4">
               {[
                 { key: 'pushNotifications', label: 'Push Notifications' },
@@ -218,7 +227,7 @@ export default function Settings() {
 
         <TabsContent value="integrations" className="space-y-6">
           <div className="glass-card p-6 animate-fade-up" style={{ animationDelay: '100ms' }}>
-            <h3 className="font-display font-semibold text-foreground mb-4">Biometric Integration</h3>
+            <h3 className="font-heading font-semibold text-foreground mb-4">Biometric Integration</h3>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                 <Database className="w-6 h-6 text-primary" />
@@ -242,7 +251,7 @@ export default function Settings() {
           </div>
 
           <div className="glass-card p-6 animate-fade-up" style={{ animationDelay: '150ms' }}>
-            <h3 className="font-display font-semibold text-foreground mb-4">Email Notifications (Resend)</h3>
+            <h3 className="font-heading font-semibold text-foreground mb-4">Email Notifications (Resend)</h3>
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                 <Smartphone className="w-6 h-6 text-primary" />
@@ -262,7 +271,7 @@ export default function Settings() {
 
         <TabsContent value="security" className="space-y-6">
           <div className="glass-card p-6 animate-fade-up" style={{ animationDelay: '100ms' }}>
-            <h3 className="font-display font-semibold text-foreground mb-4">Password Policy</h3>
+            <h3 className="font-heading font-semibold text-foreground mb-4">Password Policy</h3>
             <div className="space-y-4">
               {[
                 { key: 'strongPasswords', label: 'Require strong passwords' },
@@ -285,7 +294,7 @@ export default function Settings() {
           </div>
 
           <div className="glass-card p-6 animate-fade-up" style={{ animationDelay: '200ms' }}>
-            <h3 className="font-display font-semibold text-foreground mb-4">Data & Privacy</h3>
+            <h3 className="font-heading font-semibold text-foreground mb-4">Data & Privacy</h3>
             <div className="space-y-4">
               {[
                 { key: 'autoBackup', label: 'Automatic data backup' },

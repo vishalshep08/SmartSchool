@@ -127,7 +127,7 @@ export function StudentDocumentsPanel({ open, onOpenChange, studentId, studentNa
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="sm:max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="font-display">Documents — {studentName}</DialogTitle>
+            <DialogTitle className="font-heading">Documents — {studentName}</DialogTitle>
           </DialogHeader>
 
           {/* Summary Cards */}

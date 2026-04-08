@@ -88,7 +88,7 @@ export default function ParentAttendance() {
   return (
     <div className="space-y-6 animate-fade-up">
       <div>
-        <h1 className="font-display text-2xl font-bold text-foreground">
+        <h1 className="font-heading text-2xl font-bold text-foreground">
           Attendance {selectedChild ? `— ${selectedChild.full_name}` : ''}
         </h1>
         <p className="text-muted-foreground mt-1">View your child's attendance records</p>
@@ -111,7 +111,7 @@ export default function ParentAttendance() {
           {/* Month navigator */}
           <div className="flex items-center justify-between">
             <Button variant="outline" size="icon" onClick={prevMonth}><ChevronLeft className="h-4 w-4" /></Button>
-            <h2 className="font-display text-lg font-semibold">{monthLabel}</h2>
+            <h2 className="font-heading text-lg font-semibold">{monthLabel}</h2>
             <Button variant="outline" size="icon" onClick={nextMonth}><ChevronRight className="h-4 w-4" /></Button>
           </div>
 

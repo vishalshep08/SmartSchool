@@ -793,7 +793,7 @@ export default function ParentAnalytics() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="font-display text-2xl font-bold text-foreground flex items-center gap-2">
+          <h1 className="font-heading text-2xl font-bold text-foreground flex items-center gap-2">
             <BarChart2 className="w-6 h-6 text-primary" />
             {currentStudent?.name || 'Child'}'s Performance Analytics
           </h1>

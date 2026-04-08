@@ -1,0 +1,32 @@
+Teacher Tools
+get_class_attendance — Class attendance by date
+get_pending_leave_requests — Pending student leaves needing approval
+get_low_attendance_students — Students below threshold %
+get_my_homework — Homework posted for the class
+get_todays_timetable — Teacher's timetable for today
+
+
+
+Principal Tools
+get_school_attendance_overview — School-wide attendance across all classes
+get_pending_document_approvals — Documents in principal_review stage
+get_fee_collection_summary — Total/collected/pending fees
+get_staff_overview — Teaching & non-teaching staff counts, leaves today
+
+
+ Summary of what should work after this:
+
+1. Floating indigo button visible on all parent dashboard pages
+2. Clicking opens a beautiful chat panel (slide-up animation)
+3. Welcome message auto-sends when chat opens showing child summary
+4. Quick action pills for common questions
+5. Parent can ask natural language questions about child
+6. Claude calls tool functions to get real live data from Supabase
+7. Attendance, homework, fee, leave, remarks, study materials — all real data
+8. Claude can apply leave on parent's behalf after confirmation
+9. Claude can request documents after confirmation
+10. Typing indicator (bouncing dots) while Claude thinks
+11. Conversation history maintained within the session
+12. Minimise button to keep chat open but collapsed
+13. Works on mobile (full-width panel)
+14. Chatbot name is "Sarthi"

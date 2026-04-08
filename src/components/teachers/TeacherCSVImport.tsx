@@ -216,7 +216,7 @@ Jane Smith,jane@example.com,9876543211,EMP002,English,M.A. B.Ed,3,32000,2024-02-
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="font-display">Import Teachers from CSV</DialogTitle>
+          <DialogTitle className="font-heading">Import Teachers from CSV</DialogTitle>
           <DialogDescription>
             Upload a CSV file to bulk import teachers. A secure password will be generated for each teacher.
           </DialogDescription>

@@ -77,7 +77,7 @@ export function StaffIssues() {
     <div className="space-y-4">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h2 className="font-display text-xl font-semibold">Issues Raised</h2>
+          <h2 className="font-heading text-xl font-semibold">Issues Raised</h2>
           <p className="text-sm text-muted-foreground">Manage and resolve staff issues</p>
         </div>
         {canRaiseIssue && (

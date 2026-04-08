@@ -126,7 +126,7 @@ export function StaffLeaveManagement() {
     <div className="space-y-4">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h2 className="font-display text-xl font-semibold">Leave Management</h2>
+          <h2 className="font-heading text-xl font-semibold">Leave Management</h2>
           <p className="text-sm text-muted-foreground">Review and manage staff leave requests</p>
         </div>
         {role === 'teacher' && (

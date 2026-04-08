@@ -3,6 +3,7 @@ import { Sparkles, X, Minus, Send } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { sanitizeResponseText, handleDownloadReport, DOWNLOAD_TOOL_DEF, DOWNLOAD_PROMPT } from '@/utils/chatbotUtils';
+import { useSchoolSettings } from '@/hooks/useSchoolSettings';
 
 /* ─── Types ──────────────────────────────────────────────────────────────── */
 
@@ -463,8 +464,8 @@ async function requestDocumentFn(
 
 /* ─── System Prompt Builder ──────────────────────────────────────────────── */
 
-function buildSystemPrompt(ctx: StudentContext) {
-  return `You are Sarthi (साथी), a warm and helpful school assistant chatbot for parents at SmartSchool. Your name means "guide" or "companion" in Hindi.
+function buildSystemPrompt(ctx: StudentContext, schoolName: string) {
+  return `You are Sarthi (साथी), a warm and helpful school assistant chatbot for parents at ${schoolName || 'this school'}. Your name means "guide" or "companion" in Hindi.
 
 You are currently helping the parent of **${ctx.studentName}**.
 Student ID: ${ctx.studentId}
@@ -498,6 +499,7 @@ When the parent first opens the chat, greet them warmly with their child's name 
 
 export default function ChatbotWidget() {
   const { user } = useAuth();
+  const { schoolName } = useSchoolSettings();
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -656,7 +658,7 @@ export default function ChatbotWidget() {
           conversationHistory.current.push(userContent);
         }
 
-        const systemMessage = { role: 'system' as const, content: buildSystemPrompt(studentCtx) };
+        const systemMessage = { role: 'system' as const, content: buildSystemPrompt(studentCtx, schoolName) };
         let messagesToSend: any[] = silent
           ? [systemMessage, userContent]
           : [systemMessage, ...conversationHistory.current];

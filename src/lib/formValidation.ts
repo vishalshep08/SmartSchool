@@ -1,5 +1,5 @@
 /**
- * Form validation utilities for SmartSchool
+ * Form validation utilities
  * Provides consistent validation rules, inline error messages,
  * and duplicate-check support for all forms.
  */

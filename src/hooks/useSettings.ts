@@ -49,13 +49,13 @@ export interface AllSettings {
 
 const defaultSettings: AllSettings = {
   school: {
-    schoolName: 'SmartSchool Academy',
-    schoolCode: 'SSA-2024',
-    email: 'admin@smartschool.edu',
-    phone: '+91 98765 43210',
-    address: '123 Education Street, Learning City, India - 110001',
-    academicYear: '2024-2025',
-    sessionStartDate: '2024-04-01',
+    schoolName: '',
+    schoolCode: '',
+    email: '',
+    phone: '',
+    address: '',
+    academicYear: '',
+    sessionStartDate: '',
   },
   notifications: {
     attendanceAlerts: true,
@@ -155,6 +155,8 @@ export function useSettings() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['school-settings'] });
+      // Also invalidate the specific key used by useSchoolSettings
+      queryClient.invalidateQueries({ queryKey: ['school-settings', 'school'] });
       toast.success('Settings saved successfully!');
     },
     onError: (error: Error) => {
@@ -226,14 +228,14 @@ export function useSchoolName() {
         .single();
 
       if (error || !data) {
-        return 'SmartSchool Academy';
+        return '';
       }
 
       const schoolData = data.setting_value as unknown as SchoolSettings;
-      return schoolData?.schoolName || 'SmartSchool Academy';
+      return schoolData?.schoolName || '';
     },
     staleTime: 1000 * 60 * 10, // Cache for 10 minutes
   });
 
-  return schoolSettings || 'SmartSchool Academy';
+  return schoolSettings || '';
 }

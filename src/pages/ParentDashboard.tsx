@@ -76,7 +76,7 @@ export default function ParentDashboard() {
       {/* Welcome Card */}
       <Card className="bg-gradient-to-r from-primary/10 to-primary/5 border-primary/20">
         <CardContent className="py-6">
-          <h1 className="font-display text-2xl font-bold text-foreground">
+          <h1 className="font-heading text-2xl font-bold text-foreground">
             {getGreeting()}, {displayName || 'Parent'} 👋
           </h1>
           <p className="text-muted-foreground mt-1">{todayFormatted}</p>
@@ -145,7 +145,7 @@ export default function ParentDashboard() {
           </Card>
 
           {/* Stat Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
             {/* Today's Attendance */}
             <Card>
               <CardContent className="py-5">

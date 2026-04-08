@@ -20,7 +20,7 @@ export function generateReceiptPDF(payment: any, studentFee: any, schoolName: st
   // ── Header ──
   doc.setFontSize(16);
   doc.setFont('helvetica', 'bold');
-  doc.text(schoolName || 'SmartSchool', w / 2, 14, { align: 'center' });
+  doc.text(schoolName || '', w / 2, 14, { align: 'center' });
 
   doc.setFontSize(11);
   doc.setFont('helvetica', 'bold');

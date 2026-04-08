@@ -46,7 +46,7 @@ export function RecentActivity() {
   return (
     <div className="glass-card p-6 animate-fade-up">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="font-display font-semibold text-foreground">Recent Activity</h3>
+        <h3 className="font-heading font-semibold text-foreground">Recent Activity</h3>
         <Select value={roleFilter} onValueChange={setRoleFilter}>
           <SelectTrigger className="w-28 h-8 text-xs">
             <Filter className="w-3 h-3 mr-1" />

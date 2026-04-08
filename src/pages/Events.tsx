@@ -97,7 +97,7 @@ export default function Events() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 animate-fade-up">
         <div>
-          <h1 className="font-display text-3xl font-bold text-foreground">Events</h1>
+          <h1 className="font-heading text-3xl font-bold text-foreground">Events</h1>
           <p className="text-muted-foreground mt-1">Manage school events and activities</p>
         </div>
         <Button variant="gradient" className="gap-2" onClick={() => setIsDialogOpen(true)}>

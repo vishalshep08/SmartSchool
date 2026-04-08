@@ -71,13 +71,13 @@ export function StatCard({
     >
       <div className="flex items-start justify-between">
         <div className="flex-1">
-          <p className="text-sm font-medium text-muted-foreground">{title}</p>
-          <p className="mt-2 text-3xl font-display font-bold text-foreground">
+          <p className="font-body text-[12px] text-[#6b7280]">{title}</p>
+          <p className="mt-2 font-heading font-semibold text-[22px] text-foreground">
             {displayValue.toLocaleString()}
           </p>
           {trend && (
             <p className={cn(
-              'mt-2 text-sm font-medium flex items-center gap-1',
+              'mt-2 text-[11px] font-medium flex items-center gap-1 rounded-[5px]',
               trend.isPositive ? 'text-success' : 'text-destructive'
             )}>
               <span>{trend.isPositive ? '↑' : '↓'}</span>

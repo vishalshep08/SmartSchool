@@ -98,7 +98,7 @@ export default function Dashboard() {
       {/* Header */}
       <div className="animate-fade-up flex flex-col md:flex-row md:items-start justify-between gap-4">
         <div>
-          <h1 className="font-display text-3xl font-bold text-foreground">
+          <h1 className="font-heading text-3xl font-bold text-foreground">
             {greeting()}, {displayName?.split(' ')[0] || 'User'}
           </h1>
           <p className="text-muted-foreground mt-1">Here's what's happening at your school today</p>
@@ -154,7 +154,7 @@ export default function Dashboard() {
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <StatCard title="Total Students" value={isLoading ? 0 : stats.totalStudents} icon={GraduationCap} trend={{ value: 5.2, isPositive: true }} color="primary" delay={0} />
         <StatCard title="Total Teachers" value={isLoading ? 0 : stats.totalTeachers} icon={Users} trend={{ value: 2.1, isPositive: true }} color="success" delay={100} />
         <StatCard title="Present Today" value={isLoading ? 0 : stats.presentToday} icon={UserCheck} color="success" delay={200} />
@@ -162,7 +162,7 @@ export default function Dashboard() {
       </div>
 
       {/* Secondary Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         <StatCard title="Total Classes" value={isLoading ? 0 : stats.totalClasses} icon={Layers} color="primary" delay={400} />
         <StatCard title="Pending Homework" value={isLoading ? 0 : stats.pendingHomework} icon={BookOpen} color="warning" delay={500} />
         <StatCard title="Open Issues" value={isLoading ? 0 : stats.openIssues} icon={MessageSquareWarning} color="destructive" delay={600} />
@@ -170,7 +170,7 @@ export default function Dashboard() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
         <AttendanceChart present={stats.presentToday} absent={stats.absentToday} late={stats.lateToday} />
         <QuickActions />
         <UpcomingEvents />
@@ -181,7 +181,7 @@ export default function Dashboard() {
 
       {/* Homework Overview */}
       <div className="glass-card p-6 animate-fade-up" style={{ animationDelay: '400ms' }}>
-        <h3 className="font-display font-semibold text-foreground mb-4">Homework Overview</h3>
+        <h3 className="font-heading font-semibold text-foreground mb-4">Homework Overview</h3>
         {hwLoading ? (
           <div className="space-y-4">
             {Array.from({ length: 3 }).map((_, i) => (

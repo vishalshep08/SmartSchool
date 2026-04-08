@@ -36,6 +36,21 @@ serve(async (req) => {
 
     const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
 
+    // Fetch school name from settings
+    let dynamicSchoolName = '';
+    try {
+      const { data: settingsData } = await supabaseAdmin
+        .from('school_settings')
+        .select('setting_value')
+        .eq('setting_key', 'school')
+        .maybeSingle();
+      if (settingsData?.setting_value) {
+        dynamicSchoolName = (settingsData.setting_value as any)?.schoolName || '';
+      }
+    } catch {
+      dynamicSchoolName = '';
+    }
+
     // Verify caller is principal
     const authHeader = req.headers.get('Authorization');
     if (!authHeader) {
@@ -182,7 +197,7 @@ serve(async (req) => {
         const emailHtml = `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
             <div style="background: linear-gradient(135deg, #3b82f6, #6366f1); padding: 30px; border-radius: 12px 12px 0 0; text-align: center;">
-              <h1 style="color: white; margin: 0; font-size: 24px;">🏫 SmartSchool</h1>
+              <h1 style="color: white; margin: 0; font-size: 24px;">🏫 ${dynamicSchoolName}</h1>
               <p style="color: rgba(255,255,255,0.8); margin: 5px 0 0;">Parent Portal Login Credentials</p>
             </div>
             <div style="background: #ffffff; padding: 30px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 12px 12px;">
@@ -200,7 +215,7 @@ serve(async (req) => {
                 <p style="margin: 0; color: #92400e; font-size: 14px;">⚠️ <strong>Important:</strong> Please change your password on first login for security.</p>
               </div>
               
-              <p style="color: #9ca3af; font-size: 12px; margin-top: 20px;">This is an automated message from SmartSchool ERP System.</p>
+              <p style="color: #9ca3af; font-size: 12px; margin-top: 20px;">This is an automated message from ${dynamicSchoolName}.</p>
             </div>
           </div>
         `;
@@ -212,9 +227,9 @@ serve(async (req) => {
             'Authorization': `Bearer ${resendApiKey}`,
           },
           body: JSON.stringify({
-            from: 'SmartSchool <onboarding@resend.dev>',
+            from: `${dynamicSchoolName || 'School'} <onboarding@resend.dev>`,
             to: [email],
-            subject: `SmartSchool Parent Portal - Your Login Credentials for ${studentName}`,
+            subject: `${dynamicSchoolName || 'Parent Portal'} - Your Login Credentials for ${studentName}`,
             html: emailHtml,
           }),
         });

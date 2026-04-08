@@ -15,7 +15,7 @@ export function EmptyState({ icon: Icon = PackageOpen, title, description, actio
             <div className="w-16 h-16 rounded-2xl bg-muted/50 flex items-center justify-center mb-4">
                 <Icon className="w-8 h-8 text-muted-foreground" />
             </div>
-            <h3 className="font-display text-lg font-semibold text-foreground mb-1">{title}</h3>
+            <h3 className="font-heading text-lg font-semibold text-foreground mb-1">{title}</h3>
             <p className="text-sm text-muted-foreground text-center max-w-sm mb-4">{description}</p>
             {actionLabel && onAction && (
                 <Button variant="gradient" onClick={onAction} className="gap-2">

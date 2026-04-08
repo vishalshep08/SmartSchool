@@ -75,6 +75,47 @@
     --shadow-xl: 0 20px 25px -5px hsl(245 40% 10% / 0.1), 0 8px 10px -6px hsl(245 40% 10% / 0.1);
     --shadow-glow: 0 0 40px hsl(245 75% 52% / 0.15);
     --shadow-card: 0 1px 3px 0 hsl(245 40% 10% / 0.08), 0 1px 2px -1px hsl(245 40% 10% / 0.08);
+
+    /* --- NEW TOKENS START --- */
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
+    --font-body:    'DM Sans', sans-serif;
+
+    /* Primary */
+    --color-primary:        #2563eb;
+    --color-primary-hover:  #1d4ed8;
+    --color-primary-light:  #eff6ff;
+    --color-primary-text:   #1d4ed8;
+
+    /* Surface */
+    --color-background-page:    #f8faff;
+    --color-background-card:    #ffffff;
+    --color-background-sidebar: #1a1a2e;
+
+    /* Border */
+    --color-border:         #e2e8f0;
+    --color-border-strong:  #cbd5e1;
+
+    /* Text */
+    --color-text-primary:   #1a1a2e;
+    --color-text-secondary: #6b7280;
+    --color-text-muted:     #94a3b8;
+
+    /* Status */
+    --color-success:        #16a34a;
+    --color-success-light:  #dcfce7;
+    --color-warning:        #f59e0b;
+    --color-warning-light:  #fef3c7;
+    --color-danger:         #ef4444;
+    --color-danger-light:   #fef2f2;
+    --color-info:           #8b5cf6;
+    --color-info-light:     #fdf4ff;
+
+    /* Radius */
+    --radius-card:   14px;
+    --radius-button: 9px;
+    --radius-input:  9px;
+    --radius-badge:  6px;
+    /* --- NEW TOKENS END --- */
   }
 
   .dark {
@@ -129,19 +170,37 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-body);
+    color: var(--color-text-primary);
+    background: var(--color-background-page);
+    @apply antialiased;
   }
 
-  h1, h2, h3, h4, h5, h6,
-  .font-display {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+  }
+
+  /* Stat numbers and metric values */
+  .stat-value,
+  .metric-number {
+    font-family: var(--font-heading);
+    font-weight: 600;
   }
 }
 
 @layer components {
   .stat-card {
-    @apply relative overflow-hidden rounded-xl bg-card p-6 transition-all duration-300;
+    position: relative;
+    overflow: hidden;
+    padding: 1.5rem;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+    /* Part 7 specific fixes */
+    background: #f8faff !important;
+    border: 1px solid #e0e7ff !important;
+    border-radius: 12px !important;
     box-shadow: var(--shadow-card);
   }
 
@@ -180,8 +239,10 @@
     background-clip: text;
   }
 
-  .glass-card {
-    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl;
+  .glass-card, .stat-card, [class*="bg-card"], .card {
+    background: var(--color-background-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
     box-shadow: var(--shadow-card);
   }
 
@@ -229,9 +290,17 @@
   }
 
   /* Accent helpers */
-  .text-accent { color: hsl(14, 90%, 60%); }
-  .bg-accent-soft { background: hsl(14, 90%, 95%); }
-  .border-accent { border-color: hsl(14, 90%, 60%); }
+  .text-accent {
+    color: hsl(14, 90%, 60%);
+  }
+
+  .bg-accent-soft {
+    background: hsl(14, 90%, 95%);
+  }
+
+  .border-accent {
+    border-color: hsl(14, 90%, 60%);
+  }
 
   /* Card hover lift */
   .card-hover:hover {
@@ -309,18 +378,41 @@
 }
 
 @keyframes spin78236 {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes wobble1 {
-  0%, 100% { transform: translateY(0%) scale(1); opacity: 1; }
-  50% { transform: translateY(-66%) scale(0.65); opacity: 0.8; }
+
+  0%,
+  100% {
+    transform: translateY(0%) scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(-66%) scale(0.65);
+    opacity: 0.8;
+  }
 }
 
 @keyframes wobble2 {
-  0%, 100% { transform: translateY(0%) scale(1); opacity: 1; }
-  50% { transform: translateY(66%) scale(0.65); opacity: 0.8; }
+
+  0%,
+  100% {
+    transform: translateY(0%) scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(66%) scale(0.65);
+    opacity: 0.8;
+  }
 }
 
 @layer utilities {
@@ -344,17 +436,32 @@
     animation: countUp 1s ease-out forwards;
   }
 
-  .stagger-1 { animation-delay: 0.1s; }
-  .stagger-2 { animation-delay: 0.2s; }
-  .stagger-3 { animation-delay: 0.3s; }
-  .stagger-4 { animation-delay: 0.4s; }
-  .stagger-5 { animation-delay: 0.5s; }
+  .stagger-1 {
+    animation-delay: 0.1s;
+  }
+
+  .stagger-2 {
+    animation-delay: 0.2s;
+  }
+
+  .stagger-3 {
+    animation-delay: 0.3s;
+  }
+
+  .stagger-4 {
+    animation-delay: 0.4s;
+  }
+
+  .stagger-5 {
+    animation-delay: 0.5s;
+  }
 
   @keyframes fadeUp {
     from {
       opacity: 0;
       transform: translateY(20px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -362,8 +469,13 @@
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
   }
 
   @keyframes scaleIn {
@@ -371,6 +483,7 @@
       opacity: 0;
       transform: scale(0.95);
     }
+
     to {
       opacity: 1;
       transform: scale(1);
@@ -382,6 +495,7 @@
       opacity: 0;
       transform: translateX(20px);
     }
+
     to {
       opacity: 1;
       transform: translateX(0);
@@ -393,6 +507,7 @@
       opacity: 0;
       transform: translateY(10px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -416,12 +531,39 @@
       opacity: 0;
       transform: scale(0.3);
     }
+
     50% {
       opacity: 1;
       transform: scale(1.1);
     }
+
     to {
       transform: scale(1);
     }
+  }
+}
+
+/* Part 6 - Universal Mobile Rules styling */
+@media (max-width: 767px) {
+  /* 1. Touch targets */
+  button, 
+  a, 
+  [role="button"], 
+  [role="switch"], 
+  [role="checkbox"], 
+  [role="tab"] {
+    min-height: 44px;
+  }
+  
+  /* 2. Typography scaling */
+  h1 { font-size: 20px !important; }
+  h2 { font-size: 16px !important; }
+  
+  /* 4. Images and logos */
+  img { max-width: 100%; height: auto; }
+  
+  /* 5. Overflow prevention */
+  * {
+    max-width: 100vw;
   }
 }

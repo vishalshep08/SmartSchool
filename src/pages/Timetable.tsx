@@ -147,7 +147,7 @@ export default function Timetable() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 animate-fade-up">
         <div>
-          <h1 className="font-display text-3xl font-bold text-foreground">Timetable</h1>
+          <h1 className="font-heading text-3xl font-bold text-foreground">Timetable</h1>
           <p className="text-muted-foreground mt-1">View and manage class schedules</p>
         </div>
         {canManageTimetable && selectedClass && (
@@ -268,7 +268,7 @@ export default function Timetable() {
       {!selectedClass ? (
         <div className="glass-card p-8 text-center">
           <Clock className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-          <h3 className="font-display font-semibold text-foreground">Select a Class</h3>
+          <h3 className="font-heading font-semibold text-foreground">Select a Class</h3>
           <p className="text-sm text-muted-foreground mt-1">Choose a class to view its timetable</p>
         </div>
       ) : (
@@ -280,7 +280,7 @@ export default function Timetable() {
                 <Clock className="w-6 h-6 text-primary" />
               </div>
               <div>
-                <h3 className="font-display font-semibold text-foreground">
+                <h3 className="font-heading font-semibold text-foreground">
                   {classInfo?.name} {classInfo?.section && `- ${classInfo?.section}`}
                 </h3>
                 <p className="text-sm text-muted-foreground">

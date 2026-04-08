@@ -72,7 +72,7 @@ function generateEmailHtml(
   htmlBody?: string,
   metadata?: Record<string, unknown>,
 ): string {
-  const schoolName = (metadata?.schoolName as string) || 'SmartSchool';
+  const schoolName = (metadata?.schoolName as string) || '';
   const bodyContent = htmlBody || generateBodyFromType(type, subject, metadata);
 
   return `<!DOCTYPE html>

@@ -134,7 +134,7 @@ export default function Issues() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 animate-fade-up">
         <div>
-          <h1 className="font-display text-3xl font-bold text-foreground">Issues & Tickets</h1>
+          <h1 className="font-heading text-3xl font-bold text-foreground">Issues & Tickets</h1>
           <p className="text-muted-foreground mt-1">Manage and resolve staff issues</p>
         </div>
         
@@ -148,7 +148,7 @@ export default function Issues() {
             </DialogTrigger>
             <DialogContent className="sm:max-w-lg">
               <DialogHeader>
-                <DialogTitle className="font-display">Raise New Issue</DialogTitle>
+                <DialogTitle className="font-heading">Raise New Issue</DialogTitle>
               </DialogHeader>
               <form onSubmit={handleCreateIssue} className="space-y-4 mt-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -240,7 +240,7 @@ export default function Issues() {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">{config.label}</p>
-                  <p className="text-2xl font-display font-bold text-foreground mt-1">{count}</p>
+                  <p className="text-2xl font-heading font-bold text-foreground mt-1">{count}</p>
                 </div>
                 <div className={cn('w-10 h-10 rounded-lg flex items-center justify-center', config.color)}>
                   <Icon className="w-5 h-5" />
@@ -265,7 +265,7 @@ export default function Issues() {
       {issues.length === 0 ? (
         <div className="glass-card p-12 text-center animate-fade-up">
           <AlertCircle className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-          <h3 className="font-display font-semibold text-foreground mb-2">No issues found</h3>
+          <h3 className="font-heading font-semibold text-foreground mb-2">No issues found</h3>
           <p className="text-muted-foreground text-sm">
             {statusFilter !== 'all' ? 'No issues with this status.' : 'No issues have been raised yet.'}
           </p>
@@ -292,7 +292,7 @@ export default function Issues() {
                   
                   <div className="flex-1 min-w-0">
                     <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <h3 className="font-display font-semibold text-foreground">{issue.title}</h3>
+                      <h3 className="font-heading font-semibold text-foreground">{issue.title}</h3>
                       <span className={cn('px-2 py-0.5 rounded-full text-xs font-medium capitalize', priorityConf.color)}>
                         {issue.priority}
                       </span>

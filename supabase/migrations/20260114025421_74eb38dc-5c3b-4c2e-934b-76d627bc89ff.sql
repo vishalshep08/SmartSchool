@@ -35,10 +35,10 @@ ON public.school_settings
 FOR ALL
 USING (has_role(auth.uid(), 'principal'));
 
--- Insert default settings
+-- Insert default settings (all school-specific fields start empty so fresh installs have no hardcoded branding)
 INSERT INTO public.school_settings (setting_key, setting_value)
 VALUES 
-  ('school', '{"schoolName": "SmartSchool Academy", "schoolCode": "SSA-2024", "email": "admin@smartschool.edu", "phone": "+91 98765 43210", "address": "123 Education Street, Learning City, India - 110001", "academicYear": "2024-2025", "sessionStartDate": "2024-04-01"}'::jsonb),
+  ('school', '{"schoolName": "", "schoolCode": "", "email": "", "phone": "", "address": "", "academicYear": "", "sessionStartDate": "", "appSubtitle": ""}'::jsonb),
   ('notifications', '{"attendanceAlerts": true, "homeworkReminders": true, "eventNotifications": true, "inOutTracking": true, "issueUpdates": true, "pushNotifications": true, "emailNotifications": true, "whatsappMessages": false, "smsAlerts": false}'::jsonb),
   ('security', '{"strongPasswords": true, "passwordExpiry": false, "twoFactor": false, "autoBackup": true, "encryptData": true, "activityLogging": true}'::jsonb),
   ('integrations', '{"biometricDeviceIp": "", "whatsappApiKey": ""}'::jsonb)

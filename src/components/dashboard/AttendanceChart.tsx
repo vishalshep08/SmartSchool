@@ -17,7 +17,7 @@ export function AttendanceChart({ present, absent, late = 0 }: AttendanceChartPr
 
   return (
     <div className="glass-card p-6 animate-fade-up">
-      <h3 className="font-display font-semibold text-foreground mb-4">Today's Attendance</h3>
+      <h3 className="font-heading font-semibold text-foreground mb-4">Today's Attendance</h3>
       <div className="h-64">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
@@ -46,7 +46,7 @@ export function AttendanceChart({ present, absent, late = 0 }: AttendanceChartPr
         </ResponsiveContainer>
       </div>
       <div className="mt-4 flex items-center justify-center gap-2">
-        <span className="text-2xl font-display font-bold text-foreground">
+        <span className="text-2xl font-heading font-bold text-foreground">
           {Math.round((present / total) * 100)}%
         </span>
         <span className="text-sm text-muted-foreground">attendance rate</span>

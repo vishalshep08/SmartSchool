@@ -422,7 +422,7 @@ Arjun Patel,STU003,Class 9,B,male,2011-03-10,Suresh Patel,9876543212,suresh.pate
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 animate-fade-up">
         <div>
-          <h1 className="font-display text-3xl font-bold text-foreground">Students & Classes</h1>
+          <h1 className="font-heading text-3xl font-bold text-foreground">Students & Classes</h1>
           <p className="text-muted-foreground mt-1">Manage student records and class information</p>
         </div>
       </div>
@@ -431,7 +431,7 @@ Arjun Patel,STU003,Class 9,B,male,2011-03-10,Suresh Patel,9876543212,suresh.pate
       <Dialog open={isViewProfileOpen} onOpenChange={setIsViewProfileOpen}>
         <DialogContent className="sm:max-w-2xl">
           <DialogHeader>
-            <DialogTitle className="font-display">Student Profile</DialogTitle>
+            <DialogTitle className="font-heading">Student Profile</DialogTitle>
           </DialogHeader>
           {selectedStudent && (
             <div className="space-y-6 mt-4">
@@ -526,7 +526,7 @@ Arjun Patel,STU003,Class 9,B,male,2011-03-10,Suresh Patel,9876543212,suresh.pate
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
         <DialogContent className="sm:max-w-lg">
           <DialogHeader>
-            <DialogTitle className="font-display">Edit Student Profile</DialogTitle>
+            <DialogTitle className="font-heading">Edit Student Profile</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 mt-4">
             {/* Photo Upload */}
@@ -673,7 +673,7 @@ Arjun Patel,STU003,Class 9,B,male,2011-03-10,Suresh Patel,9876543212,suresh.pate
       <Dialog open={isAttendanceDialogOpen} onOpenChange={setIsAttendanceDialogOpen}>
         <DialogContent className="sm:max-w-3xl">
           <DialogHeader>
-            <DialogTitle className="font-display">Attendance Record</DialogTitle>
+            <DialogTitle className="font-heading">Attendance Record</DialogTitle>
           </DialogHeader>
           {selectedStudent && (
             <div className="space-y-4 mt-4">
@@ -892,7 +892,7 @@ function StudentsList({
           </DialogTrigger>
           <DialogContent className="sm:max-w-lg">
             <DialogHeader>
-              <DialogTitle className="font-display">Import Students</DialogTitle>
+              <DialogTitle className="font-heading">Import Students</DialogTitle>
             </DialogHeader>
             <div className="space-y-4 mt-4">
               <div className="border-2 border-dashed border-border rounded-lg p-8 text-center">

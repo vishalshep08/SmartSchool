@@ -240,7 +240,7 @@ export function ClerkDocumentRequests() {
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="font-display text-xl font-bold text-foreground">Document Requests</h2>
+        <h2 className="font-heading text-xl font-bold text-foreground">Document Requests</h2>
         <p className="text-sm text-muted-foreground mt-0.5">Review, forward, and issue requested documents</p>
       </div>
 

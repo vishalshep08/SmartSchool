@@ -275,7 +275,7 @@ export function PrincipalDocumentApprovals() {
   return (
     <div className="space-y-4">
       <div>
-        <h2 className="font-display text-xl font-bold text-foreground flex items-center gap-2">
+        <h2 className="font-heading text-xl font-bold text-foreground flex items-center gap-2">
           Document Approvals
           {pendingRequests.length > 0 && (
             <Badge className="bg-orange-500 text-white">{pendingRequests.length} pending</Badge>

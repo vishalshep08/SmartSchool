@@ -181,7 +181,7 @@ export default function StudyMaterials() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="font-display text-3xl font-bold text-foreground">Study Materials</h1>
+          <h1 className="font-heading text-3xl font-bold text-foreground">Study Materials</h1>
           <p className="text-muted-foreground mt-1">
             Upload and manage lecture links, notes, syllabi and assignments for your classes.
           </p>
@@ -247,7 +247,7 @@ export default function StudyMaterials() {
       ) : filtered.length === 0 ? (
         <div className="glass-card p-16 text-center">
           <BookOpen className="w-12 h-12 mx-auto text-muted-foreground mb-4 opacity-50" />
-          <h3 className="font-display font-semibold text-foreground mb-2">No materials yet</h3>
+          <h3 className="font-heading font-semibold text-foreground mb-2">No materials yet</h3>
           <p className="text-muted-foreground text-sm mb-6">Upload your first study material so students never fall behind.</p>
           <Button onClick={openCreate} variant="outline" className="gap-2">
             <Plus className="w-4 h-4" /> Upload Material
@@ -335,7 +335,7 @@ export default function StudyMaterials() {
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent className="sm:max-w-[560px] max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="font-display">
+            <DialogTitle className="font-heading">
               {editTarget ? 'Edit Study Material' : 'Upload Study Material'}
             </DialogTitle>
           </DialogHeader>

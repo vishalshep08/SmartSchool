@@ -32,10 +32,10 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { 
-  Plus, 
-  Check, 
-  X, 
+import {
+  Plus,
+  Check,
+  X,
   Calendar,
   Clock,
   Loader2
@@ -145,11 +145,11 @@ export default function Leaves() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="font-display text-2xl font-bold text-foreground">
+          <h1 className="font-heading text-2xl font-bold text-foreground">
             {role === 'principal' ? 'Leave Management' : 'My Leaves'}
           </h1>
           <p className="text-muted-foreground">
-            {role === 'principal' 
+            {role === 'principal'
               ? 'Review and manage teacher leave requests'
               : 'Apply for and track your leave requests'
             }
@@ -173,7 +173,7 @@ export default function Leaves() {
                   <Label>Leave Type</Label>
                   <Select
                     value={formData.leave_type}
-                    onValueChange={(value: LeaveType) => 
+                    onValueChange={(value: LeaveType) =>
                       setFormData(prev => ({ ...prev, leave_type: value }))
                     }
                   >
@@ -219,8 +219,8 @@ export default function Leaves() {
                   />
                 </div>
 
-                <Button 
-                  onClick={handleSubmitLeave} 
+                <Button
+                  onClick={handleSubmitLeave}
                   className="w-full"
                   disabled={!formData.start_date || !formData.end_date || !formData.reason}
                 >
@@ -293,8 +293,8 @@ export default function Leaves() {
             <TableBody>
               {filteredLeaves.length === 0 ? (
                 <TableRow>
-                  <TableCell 
-                    colSpan={role === 'principal' ? 7 : 6} 
+                  <TableCell
+                    colSpan={role === 'principal' ? 7 : 6}
                     className="text-center text-muted-foreground py-8"
                   >
                     No leave requests found

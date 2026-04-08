@@ -166,7 +166,7 @@ export default function Notices() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="font-display text-2xl font-bold text-foreground">
+          <h1 className="font-heading text-2xl font-bold text-foreground">
             Notices & Announcements
           </h1>
           <p className="text-muted-foreground">

@@ -180,7 +180,7 @@ export function SalaryReceipt({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="font-display">Salary Receipt</DialogTitle>
+          <DialogTitle className="font-heading">Salary Receipt</DialogTitle>
         </DialogHeader>
 
         <div className="flex gap-2 mb-4">

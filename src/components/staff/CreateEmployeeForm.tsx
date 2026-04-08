@@ -346,7 +346,7 @@ export function CreateEmployeeForm({ onSuccess }: CreateEmployeeFormProps) {
       {/* Step 1 - Basic Info */}
       {step === 1 && (
         <div className="glass-card p-6 space-y-4">
-          <h2 className="font-display text-xl font-semibold">Step 1: Basic Information</h2>
+          <h2 className="font-heading text-xl font-semibold">Step 1: Basic Information</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="md:col-span-2">
               <Label>Full Name *</Label>
@@ -404,7 +404,7 @@ export function CreateEmployeeForm({ onSuccess }: CreateEmployeeFormProps) {
       {/* Step 2 - Employment Details */}
       {step === 2 && (
         <div className="glass-card p-6 space-y-4">
-          <h2 className="font-display text-xl font-semibold">Step 2: Employment Details</h2>
+          <h2 className="font-heading text-xl font-semibold">Step 2: Employment Details</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <Label>Employee Type *</Label>
@@ -474,7 +474,7 @@ export function CreateEmployeeForm({ onSuccess }: CreateEmployeeFormProps) {
       {/* Step 3 - Teaching Details (only for Teaching type) */}
       {step === 3 && isTeaching && (
         <div className="glass-card p-6 space-y-6">
-          <h2 className="font-display text-xl font-semibold">Step 3: Teaching Details</h2>
+          <h2 className="font-heading text-xl font-semibold">Step 3: Teaching Details</h2>
           
           {/* Section A: Teaching Assignment */}
           <div className="border rounded-lg p-4">
@@ -637,7 +637,7 @@ export function CreateEmployeeForm({ onSuccess }: CreateEmployeeFormProps) {
       {/* Step: Documents */}
       {step === docsStep && (
         <div className="glass-card p-6 space-y-4">
-          <h2 className="font-display text-xl font-semibold">Step {isTeaching ? 4 : 3}: Documents & Banking</h2>
+          <h2 className="font-heading text-xl font-semibold">Step {isTeaching ? 4 : 3}: Documents & Banking</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
@@ -702,7 +702,7 @@ export function CreateEmployeeForm({ onSuccess }: CreateEmployeeFormProps) {
       {/* Step: Review */}
       {step === reviewStep && (
         <div className="glass-card p-6 space-y-4">
-          <h2 className="font-display text-xl font-semibold">Review & Submit</h2>
+          <h2 className="font-heading text-xl font-semibold">Review & Submit</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-3">
               <h3 className="font-medium text-foreground">Basic Information</h3>
@@ -770,7 +770,7 @@ export function CreateEmployeeForm({ onSuccess }: CreateEmployeeFormProps) {
       <Dialog open={showSuccessModal} onOpenChange={setShowSuccessModal}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 font-display">
+            <DialogTitle className="flex items-center gap-2 font-heading">
               <CheckCircle2 className="w-5 h-5 text-success" /> Employee Created Successfully
             </DialogTitle>
             <DialogDescription>Save these credentials. The password will not be shown again.</DialogDescription>

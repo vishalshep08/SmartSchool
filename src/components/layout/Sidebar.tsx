@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/contexts/AuthContext';
-import { useSchoolName } from '@/hooks/useSchoolSettings';
+import { useSchoolSettings } from '@/hooks/useSchoolSettings';
 import {
   LayoutDashboard,
   Users,
@@ -30,6 +30,7 @@ import {
   ClipboardList,
   LibraryBig,
   MessageSquare,
+  Building2,
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
@@ -55,6 +56,7 @@ const principalLinks = [
   { to: '/events', icon: CalendarDays, label: 'Events' },
   { to: '/timetable', icon: Clock, label: 'Timetable' },
   { to: '/profile', icon: User, label: 'My Profile' },
+  { to: '/school-settings', icon: Building2, label: 'School Settings' },
   { to: '/settings', icon: Settings, label: 'Settings' },
 ];
 
@@ -140,31 +142,38 @@ export function Sidebar() {
   };
 
   const SidebarContent = () => {
-    const schoolName = useSchoolName();
+    const { schoolName, appSubtitle } = useSchoolSettings();
     return (
-    <div className="flex flex-col h-full">
-      {/* Logo */}
-      <div className="flex items-center gap-3 px-4 py-6 border-b border-sidebar-border">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg">
-          <School className="w-5 h-5 text-primary-foreground" />
+      <div className="flex flex-col h-full">
+        {/* Header/Close */}
+        <div className="md:hidden flex justify-end p-2 border-b border-[#2e2e48]">
+           <Button variant="ghost" size="icon" onClick={() => setIsMobileOpen(false)} className="text-white hover:bg-[rgba(255,255,255,0.1)] w-11 h-11">
+             <X className="w-6 h-6" />
+           </Button>
         </div>
-        <div>
-          <h1 className="font-display font-bold text-sidebar-foreground text-lg">{schoolName}</h1>
-          <p className="text-xs text-sidebar-foreground/60">ERP System</p>
+
+      {/* Logo */}
+      <div className="flex items-center justify-center lg:justify-start gap-3 px-4 py-6 border-b border-[#2e2e48]">
+        <div className="w-10 h-10 min-w-[40px] rounded-[14px] bg-[#2563eb] flex items-center justify-center shadow-lg">
+          <School className="w-5 h-5 text-white" />
+        </div>
+        <div className="md:hidden lg:block overflow-hidden">
+          <h1 className="font-heading font-semibold text-[12px] text-white truncate">{schoolName}</h1>
+          <p className="text-[10px] text-[#94a3b8] truncate">{appSubtitle}</p>
         </div>
       </div>
 
       {/* User Info */}
-      <div className="px-4 py-4 border-b border-sidebar-border">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-sidebar-accent flex items-center justify-center">
-            <span className="text-sm font-medium text-sidebar-foreground">
+      <div className="px-4 py-4 border-b border-[#2e2e48]">
+        <div className="flex items-center justify-center lg:justify-start gap-3">
+          <div className="w-10 h-10 min-w-[40px] rounded-full bg-[rgba(255,255,255,0.1)] flex items-center justify-center">
+            <span className="text-[13px] font-medium text-white">
               {displayName?.split(' ').map(n => n[0]).join('') || '?'}
             </span>
           </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-sidebar-foreground truncate">{displayName || 'User'}</p>
-            <p className="text-xs text-sidebar-foreground/60 capitalize">{role}</p>
+          <div className="md:hidden lg:block flex-1 min-w-0">
+            <p className="text-[13px] font-medium text-white truncate">{displayName || 'User'}</p>
+            <p className="text-[10px] text-[#94a3b8] capitalize">{role}</p>
           </div>
         </div>
       </div>
@@ -178,18 +187,25 @@ export function Sidebar() {
             <NavLink
               key={link.to}
               to={link.to}
+              title={link.label}
               onClick={() => setIsMobileOpen(false)}
-              className={cn('sidebar-link', isActive && 'active')}
+              className={cn(
+                'flex items-center gap-3 px-3 py-2.5 rounded-[9px] transition-all duration-200 min-h-[44px]',
+                'md:justify-center lg:justify-start',
+                isActive 
+                  ? 'bg-[#eff6ff] text-[#2563eb] font-medium'
+                  : 'text-[#94a3b8] hover:bg-[rgba(255,255,255,0.06)] font-body'
+              )}
             >
-              <Icon className="w-5 h-5" />
-              <span className="font-medium flex-1">{link.label}</span>
+              <Icon className="w-5 h-5 flex-shrink-0" />
+              <span className="flex-1 font-body text-[13px] md:hidden lg:inline-block" style={{ fontWeight: isActive ? 500 : 400 }}>{link.label}</span>
               {link.to === '/class-leaves' && pendingLeaveCount > 0 && (
-                <Badge variant="destructive" className="ml-auto w-5 h-5 flex items-center justify-center p-0 rounded-full text-[10px]">
+                <Badge variant="destructive" className="ml-auto md:hidden lg:flex w-5 h-5 items-center justify-center p-0 rounded-full text-[10px]">
                   {pendingLeaveCount}
                 </Badge>
               )}
               {link.to === '/document-approvals' && pendingDocCount > 0 && (
-                <Badge variant="secondary" className="bg-yellow-100 text-yellow-800 ml-auto w-5 h-5 flex items-center justify-center p-0 rounded-full text-[10px]">
+                <Badge variant="secondary" className="bg-yellow-100 text-yellow-800 ml-auto md:hidden lg:flex w-5 h-5 items-center justify-center p-0 rounded-full text-[10px]">
                   {pendingDocCount}
                 </Badge>
               )}
@@ -199,13 +215,14 @@ export function Sidebar() {
       </nav>
 
       {/* Logout */}
-      <div className="p-3 border-t border-sidebar-border">
+      <div className="p-3 border-t border-[#2e2e48]">
         <button
           onClick={handleLogout}
-          className="sidebar-link w-full text-destructive hover:bg-destructive/10"
+          title="Logout"
+          className="flex items-center gap-3 px-3 py-2.5 rounded-[9px] w-full text-red-400 hover:bg-[rgba(255,255,255,0.06)] font-body text-[13px] min-h-[44px] md:justify-center lg:justify-start"
         >
-          <LogOut className="w-5 h-5" />
-          <span className="font-medium">Logout</span>
+          <LogOut className="w-5 h-5 flex-shrink-0" />
+          <span className="md:hidden lg:inline-block">Logout</span>
         </button>
       </div>
     </div>
@@ -232,9 +249,11 @@ export function Sidebar() {
 
       <aside
         className={cn(
-          'fixed inset-y-0 left-0 z-40 w-64 bg-sidebar transform transition-transform duration-300 ease-in-out lg:translate-x-0',
-          isMobileOpen ? 'translate-x-0' : '-translate-x-full',
+          'fixed inset-y-0 left-0 z-50 transform transition-all duration-300 ease-in-out',
+          'w-[280px] md:w-[64px] lg:w-[240px]',
+          isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         )}
+        style={{ backgroundColor: '#1a1a2e' }}
       >
         <SidebarContent />
       </aside>

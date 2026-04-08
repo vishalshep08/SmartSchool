@@ -173,7 +173,7 @@ export default function Attendance() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 animate-fade-up">
         <div>
-          <h1 className="font-display text-3xl font-bold text-foreground">Attendance</h1>
+          <h1 className="font-heading text-3xl font-bold text-foreground">Attendance</h1>
           <p className="text-muted-foreground mt-1">
             {canMarkStudentAttendance
               ? 'Mark and manage daily attendance for your class'
@@ -285,7 +285,7 @@ export default function Attendance() {
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm text-muted-foreground capitalize">{status.replace('_', ' ')}</p>
-                      <p className="text-2xl font-display font-bold text-foreground mt-1">{count}</p>
+                      <p className="text-2xl font-heading font-bold text-foreground mt-1">{count}</p>
                     </div>
                     <div className={cn('w-10 h-10 rounded-lg flex items-center justify-center', config.color)}>
                       <Icon className="w-5 h-5" />
@@ -305,7 +305,7 @@ export default function Attendance() {
             ) : students.length === 0 ? (
               <div className="text-center py-12">
                 <Users className="w-12 h-12 mx-auto text-muted-foreground mb-4" />
-                <h3 className="font-display font-semibold text-foreground mb-2">No students found</h3>
+                <h3 className="font-heading font-semibold text-foreground mb-2">No students found</h3>
                 <p className="text-muted-foreground text-sm">
                   {selectedClass ? 'No students in this class.' : 'Select a class to view students.'}
                 </p>
@@ -394,7 +394,7 @@ export default function Attendance() {
                     <UserCheck className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-foreground">Teacher Attendance</h3>
+                    <h3 className="font-heading font-semibold text-foreground">Teacher Attendance</h3>
                     <p className="text-sm text-muted-foreground">
                       {formatDateIndian(new Date(selectedDate))}
                     </p>

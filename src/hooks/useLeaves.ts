@@ -18,11 +18,10 @@ export interface TeacherLeave {
   approval_notes: string | null;
   created_at: string;
   updated_at: string;
-  teachers?: {
+  employees?: {
     id: string;
-    employee_id: string;
-    subject: string;
     user_id: string;
+    full_name: string;
   };
   profiles?: {
     full_name: string;
@@ -66,7 +65,7 @@ export function useLeaves() {
 
       let query = supabase
         .from('teacher_leaves')
-        .select(`*, teachers!inner(id, employee_id, subject, user_id)`)
+        .select(`*, employees!inner(id, user_id, full_name)`)
         .order('created_at', { ascending: false });
 
       if (teacherId) {
@@ -77,20 +76,17 @@ export function useLeaves() {
 
       if (error) throw error;
       
-      // Get teacher names from profiles
-      const teacherUserIds = data?.map(l => l.teachers?.user_id).filter(Boolean) || [];
+      // Get approver names from profiles
       const approverUserIds = data?.map(l => l.approved_by).filter(Boolean) || [];
-      const allUserIds = [...new Set([...teacherUserIds, ...approverUserIds])];
       
-      if (allUserIds.length > 0) {
+      if (approverUserIds.length > 0) {
         const { data: profiles } = await supabase
           .from('profiles')
           .select('user_id, full_name, email')
-          .in('user_id', allUserIds);
+          .in('user_id', approverUserIds);
 
         return data?.map(leave => ({
           ...leave,
-          profiles: profiles?.find(p => p.user_id === leave.teachers?.user_id),
           approver_profile: leave.approved_by 
             ? profiles?.find(p => p.user_id === leave.approved_by)
             : null

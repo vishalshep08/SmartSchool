@@ -13,7 +13,7 @@ export function ErrorState({ title = 'Something went wrong', message = 'Failed t
             <div className="w-16 h-16 rounded-2xl bg-destructive/10 flex items-center justify-center mb-4">
                 <AlertTriangle className="w-8 h-8 text-destructive" />
             </div>
-            <h3 className="font-display text-lg font-semibold text-foreground mb-1">{title}</h3>
+            <h3 className="font-heading text-lg font-semibold text-foreground mb-1">{title}</h3>
             <p className="text-sm text-muted-foreground text-center max-w-sm mb-4">{message}</p>
             {onRetry && (
                 <Button variant="outline" onClick={onRetry}>

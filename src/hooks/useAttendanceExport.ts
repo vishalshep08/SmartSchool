@@ -286,7 +286,7 @@ export function useAttendanceExport() {
 
             const pageWidth = doc.internal.pageSize.getWidth();
             // Explicitly coerce to string — jsPDF doc.text() throws if it receives a non-string
-            const safeSchoolName = typeof schoolName === 'string' && schoolName ? schoolName : 'SmartSchool Academy';
+            const safeSchoolName = typeof schoolName === 'string' && schoolName ? schoolName : '';
             const generatedBy = typeof (profile as any)?.fullName === 'string' ? (profile as any).fullName : (typeof (profile as any)?.full_name === 'string' ? (profile as any).full_name : 'Admin');
             const generatedOn = format(new Date(), 'dd/MM/yyyy hh:mm a');
 

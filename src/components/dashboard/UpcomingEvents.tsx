@@ -8,7 +8,7 @@ export function UpcomingEvents() {
 
   return (
     <div className="glass-card p-6 animate-fade-up">
-      <h3 className="font-display font-semibold text-foreground mb-4">Upcoming Events</h3>
+      <h3 className="font-heading font-semibold text-foreground mb-4">Upcoming Events</h3>
       <div className="space-y-3">
         {isLoading ? (
           Array.from({ length: 3 }).map((_, i) => (

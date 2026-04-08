@@ -24,7 +24,7 @@ export default function StaffManagement() {
   return (
     <div className="space-y-6">
       <div className="animate-fade-up">
-        <h1 className="font-display text-3xl font-bold text-foreground">Staff & Employee Management</h1>
+        <h1 className="font-heading text-3xl font-bold text-foreground">Staff & Employee Management</h1>
         <p className="text-muted-foreground mt-1">Manage all staff — teaching, non-teaching, management, and contract</p>
       </div>
 

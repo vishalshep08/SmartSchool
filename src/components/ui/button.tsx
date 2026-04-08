@@ -9,13 +9,13 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md active:scale-[0.98]",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-sm",
-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+        default: "bg-[#2563eb] text-[#ffffff] hover:bg-[#1d4ed8] rounded-[9px] font-heading font-semibold text-[13px] shadow-sm hover:shadow-md active:scale-[0.98]",
+        destructive: "bg-[#ef4444] text-[#ffffff] hover:bg-destructive/90 shadow-sm",
+        outline: "border border-[#e2e8f0] bg-background hover:bg-accent hover:text-accent-foreground",
+        secondary: "bg-[#f1f5f9] text-[#334155] border border-[#e2e8f0] rounded-[9px] font-heading font-medium text-[13px] hover:bg-slate-200",
+        ghost: "bg-[#f1f5f9] text-[#334155] border border-[#e2e8f0] rounded-[9px] font-heading font-medium text-[13px] hover:bg-slate-200",
         link: "text-primary underline-offset-4 hover:underline",
-        gradient: "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground hover:opacity-90 shadow-md hover:shadow-lg active:scale-[0.98]",
+        gradient: "bg-[#2563eb] text-[#ffffff] hover:bg-[#1d4ed8] rounded-[9px] font-heading font-semibold text-[13px] shadow-sm hover:shadow-md active:scale-[0.98]",
         success: "bg-success text-success-foreground hover:bg-success/90 shadow-sm",
       },
       size: {
