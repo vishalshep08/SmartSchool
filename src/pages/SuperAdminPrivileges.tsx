@@ -322,7 +322,7 @@ export default function SuperAdminPrivileges() {
                       )}
                       <div className="w-9 h-9 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center flex-shrink-0">
                         <span className="text-xs font-medium text-primary">
-                          {(staff.profile?.full_name || staff.employee_id)
+                          {(staff.profile?.full_name || staff.employee_id || '?')
                             .split(' ')
                             .map((n: string) => n[0])
                             .join('')

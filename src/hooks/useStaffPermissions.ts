@@ -142,23 +142,20 @@ export function useStaffPermissions() {
     const { data: staffData = [], isLoading: staffLoading } = useQuery({
         queryKey: ['privilege-staff-list'],
         queryFn: async () => {
-            const [{ data: teachers, error: teachersErr }, { data: employees, error: employeesErr }] = await Promise.all([
-                (supabase as any).from('teachers').select('*'),
-                (supabase as any).from('employees').select('*'),
-            ]);
+            const { data: employees, error: employeesErr } = await (supabase as any).from('employees').select('*');
 
-            if (teachersErr) console.error('Teachers fetch error:', teachersErr);
             if (employeesErr) console.error('Employees fetch error:', employeesErr);
 
-            const allStaff = [
-                ...(teachers || []).map((t: any) => ({ ...t, employee_type: 'Teaching', source_table: 'teachers' })),
-                ...(employees || []).map((e: any) => ({ ...e, employee_type: e.employee_type || 'Non-Teaching', source_table: 'employees' })),
-            ];
+            const allStaff = (employees || []).map((e: any) => ({ 
+                ...e, 
+                employee_type: e.employee_type || 'Non-Teaching', 
+                source_table: 'employees' 
+            }));
 
-            const userIds = allStaff.map(s => s.user_id).filter(Boolean);
+            const userIds = allStaff.map((s: any) => s.user_id).filter(Boolean);
             const { data: profiles } = await supabase.from('profiles').select('*').in('user_id', userIds);
 
-            return allStaff.map(s => ({
+            return allStaff.map((s: any) => ({
                 ...s,
                 profile: profiles?.find(p => p.user_id === s.user_id) || null,
             }));
