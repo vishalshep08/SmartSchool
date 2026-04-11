@@ -137,7 +137,7 @@ serve(async (req) => {
       email,
       password,
       email_confirm: true,
-      user_metadata: { full_name: parentName.trim(), role: 'parent' },
+      user_metadata: { full_name: parentName.trim(), role: 'parent', is_parent: true },
     });
 
     if (createError || !userData.user) {

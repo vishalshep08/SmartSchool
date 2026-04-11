@@ -31,6 +31,8 @@ import {
   LibraryBig,
   MessageSquare,
   Building2,
+  ArrowUpCircle,
+  PiggyBank,
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
@@ -47,6 +49,8 @@ const principalLinks = [
   { to: '/staff', icon: Users, label: 'Staff & Employees' },
   { to: '/staff-management', icon: Briefcase, label: 'Staff Management' },
   { to: '/attendance', icon: CalendarCheck, label: 'Attendance' },
+  { to: '/fee-summary', icon: PiggyBank, label: 'Fee Management' },
+  { to: '/promotion', icon: ArrowUpCircle, label: 'Year-End Promotion' },
   { to: '/announcements', icon: Megaphone, label: 'Announcements' },
   { to: '/reports', icon: FileBarChart, label: 'Reports' },
   { to: '/email-center', icon: Mail, label: 'Email Center' },

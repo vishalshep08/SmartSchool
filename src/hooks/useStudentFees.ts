@@ -105,7 +105,7 @@ export function useStudentFees(filters?: {
     const assignFee = useMutation({
         mutationFn: async (input: {
             student_id: string;
-            fee_structure_id: string;
+            fee_structure_id: string | null;
             academic_year: string;
             total_amount: number;
         }) => {

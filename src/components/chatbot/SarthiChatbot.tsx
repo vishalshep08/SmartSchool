@@ -509,74 +509,136 @@ RULES:
 /* ─── Shared CSS (same as parent chatbot) ────────────────────────────────── */
 
 const CHATBOT_STYLES = `
+  @keyframes sarthi-slide-up { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  @keyframes sarthi-msg-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes sarthi-bounce { 0%,80%,100% { transform: scale(0.65); opacity: 0.35; } 40% { transform: scale(1); opacity: 1; } }
+
   .sarthi-fab {
-    position: fixed; bottom: 24px; right: 24px; width: 60px; height: 60px;
-    border-radius: 50%; background: hsl(var(--primary)); box-shadow: 0 8px 32px hsla(var(--primary), 0.4);
-    cursor: pointer; z-index: 9999; transition: transform 0.2s ease, box-shadow 0.2s ease;
-    display: flex; align-items: center; justify-content: center; border: none; outline: none;
+    position: fixed; bottom: 24px; right: 24px; width: 58px; height: 58px;
+    border-radius: 50%; cursor: pointer; z-index: 9999; border: none; outline: none;
+    display: flex; align-items: center; justify-content: center; font-size: 24px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: sarthi-slide-up 0.35s cubic-bezier(0.16,1,0.3,1);
+    background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+    box-shadow: 0 8px 32px rgba(79,70,229,0.45);
   }
-  .sarthi-fab:hover { transform: scale(1.1); box-shadow: 0 12px 40px hsla(var(--primary), 0.6); }
+  .sarthi-fab:hover { transform: scale(1.1); box-shadow: 0 12px 40px rgba(79,70,229,0.6); }
+  @media (max-width: 767px) {
+    .sarthi-fab { bottom: 88px !important; right: 16px !important; }
+  }
 
   .sarthi-panel {
     position: fixed; bottom: 24px; right: 24px; width: 388px; background: #fff;
-    border-radius: 20px; z-index: 9999; display: flex; flex-direction: column;
+    border-radius: 24px; z-index: 9999; display: flex; flex-direction: column;
     overflow: hidden; animation: sarthi-slide-up 0.35s cubic-bezier(0.16,1,0.3,1);
-    box-shadow: 0 24px 80px hsla(var(--primary), 0.22), 0 0 0 1px hsla(var(--primary), 0.08);
+    box-shadow: 0 24px 80px rgba(79,70,229,0.18), 0 0 0 1px rgba(79,70,229,0.08);
+    transition: height 0.3s cubic-bezier(0.16,1,0.3,1);
   }
-  .sarthi-panel.minimized { height: 64px !important; }
-  @keyframes sarthi-slide-up { from { transform: translateY(24px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-  
-  @media (max-width: 767px) { 
-    .sarthi-fab { bottom: 84px !important; right: 16px !important; }
-    .sarthi-panel { width: 100%; right: 0; bottom: 0; border-radius: 20px 20px 0 0; height: 85vh !important; } 
+  @media (max-width: 639px) {
+    .sarthi-panel { width: 100%; right: 0; bottom: 0; border-radius: 0; height: 100dvh !important; }
+    .sarthi-fab { bottom: 88px !important; right: 16px !important; }
   }
 
-  .sarthi-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; flex-shrink: 0; background: hsl(var(--primary)); }
+  .sarthi-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 16px; flex-shrink: 0;
+    background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #EC4899 100%);
+  }
   .sarthi-header-left { display: flex; align-items: center; gap: 12px; }
-  .sarthi-header-icon { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; }
-  .sarthi-header-title { color: #fff; font-weight: 600; font-size: 14px; line-height: 1.3; }
-  .sarthi-header-sub { color: rgba(255,255,255,0.65); font-size: 11px; }
+  .sarthi-header-icon {
+    width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
+  }
+  .sarthi-header-title { color: #fff; font-weight: 700; font-size: 15px; }
+  .sarthi-header-sub { color: rgba(255,255,255,0.72); font-size: 11px; }
   .sarthi-header-actions { display: flex; align-items: center; gap: 4px; }
-  .sarthi-header-btn { background: none; border: none; padding: 6px; cursor: pointer; border-radius: 8px; transition: background 0.15s; display: flex; align-items: center; justify-content: center; }
-  .sarthi-header-btn:hover { background: rgba(255,255,255,0.18); }
+  .sarthi-header-btn {
+    background: rgba(255,255,255,0.15); border: none; padding: 0; cursor: pointer;
+    border-radius: 8px; width: 32px; height: 32px; transition: background 0.15s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sarthi-header-btn:hover { background: rgba(255,255,255,0.28); }
 
-  .sarthi-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; background: #f8f9fb; }
+  .sarthi-messages {
+    flex: 1; overflow-y: auto; padding: 16px;
+    display: flex; flex-direction: column; gap: 12px; background: #f8f9fb;
+  }
   .sarthi-messages::-webkit-scrollbar { width: 4px; }
-  .sarthi-messages::-webkit-scrollbar-thumb { background: #c7c7cc; border-radius: 4px; }
+  .sarthi-messages::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
 
-  .sarthi-msg { display: flex; animation: sarthi-msg-in 0.3s ease; }
-  @keyframes sarthi-msg-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .sarthi-msg { display: flex; animation: sarthi-msg-in 0.28s ease; gap: 8px; align-items: flex-end; }
   .sarthi-msg.user { justify-content: flex-end; }
   .sarthi-msg.assistant { justify-content: flex-start; }
 
-  .sarthi-bubble { max-width: 82%; padding: 10px 14px; border-radius: 18px; font-size: 13.5px; line-height: 1.55; box-shadow: 0 1px 3px rgba(0,0,0,0.06); word-break: break-word; }
-  .sarthi-bubble.user { background: hsl(var(--primary)); color: #fff; border-bottom-right-radius: 6px; }
-  .sarthi-bubble.assistant { background: #fff; color: #1f2937; border: 1px solid #e5e7eb; border-bottom-left-radius: 6px; }
-  .sarthi-bubble .ts { font-size: 10px; margin-top: 4px; opacity: 0.55; }
-  .sarthi-bubble.user .ts { color: rgba(255,255,255,0.6); }
+  .sarthi-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: linear-gradient(135deg, #4F46E5, #7C3AED);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; flex-shrink: 0;
+  }
+
+  .sarthi-bubble {
+    max-width: 82%; padding: 10px 14px; font-size: 13.5px; line-height: 1.55;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07); word-break: break-word;
+  }
+  .sarthi-bubble.assistant {
+    background: #fff; color: #1f2937; border: 1px solid #f0f0f0;
+    border-radius: 18px 18px 18px 4px;
+  }
+  .sarthi-bubble.user {
+    background: linear-gradient(135deg, #4F46E5, #7C3AED); color: #fff;
+    border-radius: 18px 18px 4px 18px;
+  }
+  .sarthi-bubble .ts { font-size: 10px; margin-top: 4px; opacity: 0.55; text-align: right; }
+  .sarthi-bubble.user .ts { color: rgba(255,255,255,0.65); }
   .sarthi-bubble.assistant .ts { color: #9ca3af; }
 
-  .sarthi-typing { display: flex; gap: 5px; align-items: center; padding: 12px 16px; background: #fff; border: 1px solid #e5e7eb; border-radius: 18px; border-bottom-left-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
-  .sarthi-typing-dot { width: 7px; height: 7px; border-radius: 50%; background: hsl(var(--primary)); animation: sarthi-bounce 1.4s infinite ease-in-out; }
+  .sarthi-typing {
+    background: #fff; border-radius: 18px 18px 18px 4px;
+    padding: 12px 16px; display: flex; gap: 5px; align-items: center;
+    border: 1px solid #e5e7eb; box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .sarthi-typing-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: #6366f1;
+    animation: sarthi-bounce 1.4s infinite ease-in-out;
+  }
   .sarthi-typing-dot:nth-child(2) { animation-delay: 0.16s; }
   .sarthi-typing-dot:nth-child(3) { animation-delay: 0.32s; }
-  @keyframes sarthi-bounce { 0%,80%,100% { transform: scale(0.7); opacity: 0.4; } 40% { transform: scale(1); opacity: 1; } }
 
-  .sarthi-welcome { text-align: center; padding: 20px 8px; }
-  .sarthi-welcome-icon { width: 60px; height: 60px; margin: 0 auto 12px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: hsla(var(--primary), 0.1); color: hsl(var(--primary)); }
-  .sarthi-welcome h3 { color: #374151; font-size: 15px; font-weight: 600; margin: 0 0 4px; }
+  .sarthi-welcome { text-align: center; padding: 16px 8px; }
+  .sarthi-welcome-icon {
+    width: 56px; height: 56px; margin: 0 auto 12px; border-radius: 50%;
+    background: linear-gradient(135deg, rgba(79,70,229,0.12), rgba(124,58,237,0.12));
+    display: flex; align-items: center; justify-content: center; font-size: 26px;
+  }
+  .sarthi-welcome h3 { color: #374151; font-size: 15px; font-weight: 700; margin: 0 0 4px; }
   .sarthi-welcome p { color: #9ca3af; font-size: 12px; margin: 0; }
   .sarthi-quick-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 16px; }
-  .sarthi-quick-btn { padding: 6px 14px; background: #fff; font-size: 12px; border-radius: 999px; cursor: pointer; transition: all 0.15s; font-weight: 500; box-shadow: 0 1px 2px rgba(0,0,0,0.06); border: 1px solid hsla(var(--primary), 0.3); color: hsl(var(--primary)); }
-  .sarthi-quick-btn:hover { background: hsla(var(--primary), 0.05); border-color: hsl(var(--primary)); transform: translateY(-1px); }
+  .sarthi-quick-btn {
+    padding: 6px 14px; background: #fff; font-size: 12px; border-radius: 999px;
+    cursor: pointer; transition: all 0.15s; font-weight: 500;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05); border: 1px solid rgba(79,70,229,0.25); color: #4F46E5;
+  }
+  .sarthi-quick-btn:hover { background: rgba(79,70,229,0.05); transform: translateY(-1px); }
 
   .sarthi-input-area { padding: 12px 14px; background: #fff; border-top: 1px solid #f1f3f5; flex-shrink: 0; }
   .sarthi-input-row { display: flex; gap: 8px; align-items: flex-end; }
-  .sarthi-textarea { flex: 1; resize: none; border: 1px solid #e5e7eb; border-radius: 14px; padding: 10px 14px; font-size: 13.5px; font-family: inherit; min-height: 40px; max-height: 96px; overflow-y: auto; outline: none; transition: border-color 0.15s, box-shadow 0.15s; line-height: 1.4; }
-  .sarthi-textarea:focus { border-color: hsl(var(--primary)); box-shadow: 0 0 0 3px hsla(var(--primary), 0.12); }
+  .sarthi-textarea {
+    flex: 1; resize: none; border: 1px solid #e5e7eb; border-radius: 14px;
+    padding: 10px 14px; font-size: 13.5px; font-family: inherit;
+    min-height: 40px; max-height: 96px; overflow-y: auto; outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s; line-height: 1.4;
+  }
+  .sarthi-textarea:focus { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.12); }
   .sarthi-textarea:disabled { background: #f9fafb; color: #9ca3af; }
   .sarthi-textarea::placeholder { color: #9ca3af; }
-  .sarthi-send-btn { width: 40px; height: 40px; border-radius: 14px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: opacity 0.15s, transform 0.15s; background: hsl(var(--primary)); color: #fff; }
+  .sarthi-send-btn {
+    width: 40px; height: 40px; border-radius: 14px; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    background: linear-gradient(135deg, #4F46E5, #7C3AED); color: #fff;
+    transition: opacity 0.15s, transform 0.15s;
+  }
   .sarthi-send-btn:hover:not(:disabled) { transform: scale(1.05); }
   .sarthi-send-btn:disabled { opacity: 0.35; cursor: not-allowed; }
   .sarthi-input-hint { font-size: 10px; color: #9ca3af; text-align: center; margin-top: 6px; }
@@ -840,13 +902,11 @@ export default function SarthiChatbot({ variant }: { variant: SarthiRole }) {
 
       {/* Chat Panel */}
       {isOpen && (
-        <div className={`sarthi-panel ${v} ${isMinimized ? 'minimized' : ''}`} style={{ height: isMinimized ? 64 : 600 }}>
+        <div className="sarthi-panel" style={{ height: isMinimized ? 68 : 620 }}>
           {/* Header */}
-          <div className={`sarthi-header ${v}`}>
+          <div className="sarthi-header">
             <div className="sarthi-header-left">
-              <div className="sarthi-header-icon">
-                <Sparkles className="w-5 h-5" style={{ color: '#fff' }} />
-              </div>
+              <div className="sarthi-header-icon">🎓</div>
               <div>
                 <div className="sarthi-header-title">Sarthi</div>
                 <div className="sarthi-header-sub">{subtitle}</div>
@@ -868,14 +928,12 @@ export default function SarthiChatbot({ variant }: { variant: SarthiRole }) {
               <div className="sarthi-messages">
                 {messages.length === 0 && !isLoading && (
                   <div className="sarthi-welcome">
-                    <div className={`sarthi-welcome-icon ${v}`}>
-                      <Sparkles className="w-7 h-7" style={{ color: v === 'teacher' ? '#059669' : '#B45309' }} />
-                    </div>
+                    <div className="sarthi-welcome-icon">🎓</div>
                     <h3>Hi! I'm Sarthi 👋</h3>
                     <p>{v === 'teacher' ? 'Your personal teaching assistant' : 'Your school management assistant'}</p>
                     <div className="sarthi-quick-actions">
                       {quickActions.map(action => (
-                        <button key={action.label} className={`sarthi-quick-btn ${v}`} onClick={() => sendMessage(action.message)}>
+                        <button key={action.label} className="sarthi-quick-btn" onClick={() => sendMessage(action.message)}>
                           {action.label}
                         </button>
                       ))}
@@ -885,14 +943,17 @@ export default function SarthiChatbot({ variant }: { variant: SarthiRole }) {
 
                 {messages.map(msg => (
                   <div key={msg.id} className={`sarthi-msg ${msg.role}`}>
+                    {msg.role === 'assistant' && !msg.isTyping && (
+                      <div className="sarthi-avatar">🎓</div>
+                    )}
                     {msg.isTyping ? (
                       <div className="sarthi-typing">
-                        <div className={`sarthi-typing-dot ${v}`} />
-                        <div className={`sarthi-typing-dot ${v}`} />
-                        <div className={`sarthi-typing-dot ${v}`} />
+                        <div className="sarthi-typing-dot" />
+                        <div className="sarthi-typing-dot" />
+                        <div className="sarthi-typing-dot" />
                       </div>
                     ) : (
-                      <div className={`sarthi-bubble ${msg.role} ${msg.role === 'user' ? v : ''}`}>
+                      <div className={`sarthi-bubble ${msg.role}`}>
                         <div className="sarthi-content-text">{msg.content}</div>
                         <div className="ts">
                           {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}

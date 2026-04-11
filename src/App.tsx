@@ -54,6 +54,8 @@ import ParentStudyMaterials from "./pages/ParentStudyMaterials";
 import ParentAnalytics from "./pages/ParentAnalytics";
 import TeacherRemarks from "./pages/teacher/TeacherRemarks";
 import SchoolSettingsPage from "./pages/principal/SchoolSettingsPage";
+import FeeSummaryPage from "./pages/principal/FeeSummaryPage";
+import StudentPromotionPage from "./pages/principal/StudentPromotionPage";
 
 import { Loader2 } from "lucide-react";
 import { Loader } from "@/components/ui/loader";
@@ -250,6 +252,8 @@ function AppRoutes() {
         <Route path="reports" element={<ProtectedRoute allowedRoles={["principal"]}><Reports /></ProtectedRoute>} />
         <Route path="settings" element={<ProtectedRoute allowedRoles={["principal"]}><Settings /></ProtectedRoute>} />
         <Route path="school-settings" element={<ProtectedRoute allowedRoles={["principal"]}><SchoolSettingsPage /></ProtectedRoute>} />
+        <Route path="fee-summary" element={<ProtectedRoute allowedRoles={["principal"]}><FeeSummaryPage /></ProtectedRoute>} />
+        <Route path="promotion" element={<ProtectedRoute allowedRoles={["principal"]}><StudentPromotionPage /></ProtectedRoute>} />
       </Route>
       {/* Legacy redirects */}
       <Route path="/teachers" element={<Navigate to="/staff" replace />} />

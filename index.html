@@ -3,29 +3,122 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Loading…</title>
-    <meta name="description" content="" />
+
+    <!-- Primary Meta — values injected dynamically by PageHeader.tsx at runtime -->
+    <title>School ERP</title>
+    <meta name="description" content="Complete school management system for Principals, Staff, and Parents." />
     <meta name="author" content="" />
-    <meta name="keywords" content="school management, ERP, education software, attendance system, homework tracker, timetable, school administration" />
+    <meta name="keywords" content="school management, ERP, education software, attendance, homework, timetable, fees, school administration, India" />
+    <meta name="robots" content="noindex, nofollow" />
 
-    <meta property="og:title" content="" />
-    <meta property="og:description" content="" />
-    <meta property="og:type" content="website" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:description" content="" />
-    
+    <!-- Canonical -->
     <link rel="canonical" href="" />
 
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content="School ERP" />
+    <meta property="og:description" content="Complete school management system." />
+    <meta property="og:image"       content="/logo.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary" />
+    <meta name="twitter:title"       content="School ERP" />
+    <meta name="twitter:description" content="Complete school management system." />
+    <meta name="twitter:image"       content="/logo.png" />
+
+    <!-- Favicon — place logo.png in /public folder -->
+    <link rel="icon"             type="image/png" sizes="32x32" href="/logo.png" />
+    <link rel="apple-touch-icon" sizes="180x180"                href="/logo.png" />
+    <meta name="theme-color" content="#2563eb" />
+
     <!-- Typography -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=DM+Sans:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Prevent flash of unstyled content -->
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+      body {
+        font-family: 'DM Sans', sans-serif;
+        background: #f8faff;
+        color: #1a1a2e;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      #root { min-height: 100vh; }
+
+      /* Loading spinner shown before React mounts */
+      #app-loader {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: #f8faff;
+        gap: 16px;
+        z-index: 9999;
+        transition: opacity 0.3s ease;
+      }
+      #app-loader img {
+        width: 56px;
+        height: 56px;
+        border-radius: 12px;
+        object-fit: contain;
+      }
+      #app-loader .spinner {
+        width: 28px;
+        height: 28px;
+        border: 2.5px solid #e2e8f0;
+        border-top-color: #2563eb;
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+      }
+      #app-loader .loader-text {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        color: #94a3b8;
+        letter-spacing: 0.01em;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
   </head>
 
   <body>
+
+    <!-- Loading screen — hidden once React mounts -->
+    <div id="app-loader" aria-label="Loading application" role="status">
+      <img src="/logo.png" alt="School logo" onerror="this.style.display='none'" />
+      <div class="spinner"></div>
+      <span class="loader-text">SmartSchool- ERP Software</span>
+    </div>
+
     <div id="root"></div>
+
+    <!-- Hide loader once React has mounted -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var observer = new MutationObserver(function () {
+          var root = document.getElementById('root');
+          if (root && root.children.length > 0) {
+            var loader = document.getElementById('app-loader');
+            if (loader) {
+              loader.style.opacity = '0';
+              setTimeout(function () { loader.remove(); }, 300);
+            }
+            observer.disconnect();
+          }
+        });
+        observer.observe(document.getElementById('root'), { childList: true });
+      });
+    </script>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
