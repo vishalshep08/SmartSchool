@@ -694,12 +694,12 @@ export default function SarthiChatbot({ variant }: { variant: SarthiRole }) {
     };
 
     fetchTeacherContext();
-  }, [user, variant]);
+  }, [user?.id, variant]);
 
   // Auto-scroll
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  }, [messages.length]);
 
   // Execute tool
   const executeToolCall = useCallback(
@@ -748,7 +748,7 @@ export default function SarthiChatbot({ variant }: { variant: SarthiRole }) {
         return { error: err.message || 'Tool execution failed' };
       }
     },
-    [variant, teacherCtx],
+    [variant, teacherCtx?.teacherId, teacherCtx?.classId, teacherCtx?.isClassTeacher],
   );
 
   // Groq API call

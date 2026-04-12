@@ -71,7 +71,7 @@ export function StaffSidebar() {
         .subscribe();
       return () => { supabase.removeChannel(channel); };
     }
-  }, [employeeDetails]);
+  }, [employeeDetails?.id, employeeDetails?.department, employeeDetails?.designation]);
 
   const handleLogout = async () => {
     await logout();

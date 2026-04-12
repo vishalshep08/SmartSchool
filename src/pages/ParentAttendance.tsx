@@ -58,7 +58,7 @@ export default function ParentAttendance() {
     const map = new Map<string, typeof attendanceRecords[0]>();
     attendanceRecords.forEach(r => map.set(r.date, r));
     return map;
-  }, [attendanceRecords]);
+  }, [attendanceRecords.length]);
 
   // Summary stats
   const summary = useMemo(() => {
@@ -69,7 +69,7 @@ export default function ParentAttendance() {
     const late = attendanceRecords.filter(r => r.status === 'late').length;
     const pct = totalDays > 0 ? ((present + late + halfDay * 0.5) / totalDays) * 100 : 0;
     return { totalDays, present, absent, halfDay, late, pct };
-  }, [attendanceRecords]);
+  }, [attendanceRecords.length]);
 
   // Calendar grid
   const daysInMonth = eachDayOfInterval({ start: monthStart, end: monthEnd });

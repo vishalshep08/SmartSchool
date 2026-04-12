@@ -760,7 +760,7 @@ export default function ParentAnalytics() {
 
     if (user?.id) fetchStudents();
     return () => { cancelled = true; };
-  }, [user]);
+  }, [user?.id]);
 
   // When student changes — clear old data first, then fetch new
   useEffect(() => {

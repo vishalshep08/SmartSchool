@@ -484,12 +484,12 @@ export default function ChatbotWidget() {
       }
     };
     fetchAll();
-  }, [user]);
+  }, [user?.id]);
 
   // Auto-scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  }, [messages.length]);
 
   // When student switches, reset conversation
   const handleSwitchStudent = (student: StudentInfo) => {
@@ -516,7 +516,7 @@ export default function ChatbotWidget() {
       case 'download_student_report': return await handleDownloadReport(toolInput, { studentId, classId, role: 'parent' });
       default: return { error: `Unknown tool: ${toolName}` };
     }
-  }, [activeStudent]);
+  }, [activeStudent?.studentId, activeStudent?.classId, activeStudent?.parentId]);
 
   // Parse failed tool calls
   const parseFailedToolCall = (failedText: string): { name: string; args: any } | null => {

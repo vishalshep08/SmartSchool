@@ -46,7 +46,7 @@ export function AllStaffList({ onViewProfile }: AllStaffListProps) {
   const departments = useMemo(() => {
     const depts = new Set(staff.map(s => s.department).filter(Boolean));
     return Array.from(depts);
-  }, [staff]);
+  }, [staff.length]);
 
   const filtered = useMemo(() => {
     return staff.filter(s => {
@@ -60,7 +60,7 @@ export function AllStaffList({ onViewProfile }: AllStaffListProps) {
         (statusFilter === 'Active' ? s.is_active : !s.is_active);
       return matchSearch && matchType && matchDept && matchStatus;
     });
-  }, [staff, search, typeFilter, deptFilter, statusFilter]);
+  }, [staff.length, search, typeFilter, deptFilter, statusFilter]);
 
   const handleExport = () => {
     const headers = ['Employee ID', 'Name', 'Designation', 'Department', 'Type', 'Status', 'Email'];

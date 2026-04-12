@@ -94,7 +94,7 @@ export default function Timetable() {
     
     // Sort by start time
     return allSlots.sort((a, b) => a.start.localeCompare(b.start));
-  }, [timetable]);
+  }, [timetable.length]);
 
   const getSlotForDayAndTime = (day: number, startTime: string) => {
     return timetable.find(slot => 
