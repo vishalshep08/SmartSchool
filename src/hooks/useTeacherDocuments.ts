@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 
@@ -33,6 +33,31 @@ export function useTeacherDocumentUpload() {
   const [progress, setProgress] = useState<Record<string, number>>({});
   const [uploadedDocs, setUploadedDocs] = useState<Record<string, { file_name: string; file_url: string; file_size_bytes: number }>>({});
 
+  useEffect(() => {
+    const activeDocs = Object.keys(uploading).filter(k => uploading[k]);
+    if (activeDocs.length === 0) return;
+
+    const progressInterval = setInterval(() => {
+      setProgress(prev => {
+        const next = { ...prev };
+        let allDone = true;
+        
+        activeDocs.forEach(docType => {
+          const current = next[docType] || 0;
+          if (current < 90) {
+            next[docType] = current + 10;
+            allDone = false;
+          }
+        });
+
+        if (allDone) clearInterval(progressInterval);
+        return next;
+      });
+    }, 200);
+
+    return () => clearInterval(progressInterval);
+  }, [uploading]);
+
   const validateFile = (file: File, docType: DocType): string | null => {
     if (!ALLOWED_TYPES.includes(file.type)) {
       return 'Only PDF, JPG, and PNG files are accepted.';
@@ -58,24 +83,10 @@ export function useTeacherDocumentUpload() {
 
     try {
       const filePath = `${teacherId}/${docType}/${Date.now()}_${file.name}`;
-      
-      // Simulate progress
-      const progressInterval = setInterval(() => {
-        setProgress(prev => {
-          const current = prev[docType] || 0;
-          if (current >= 90) {
-            clearInterval(progressInterval);
-            return prev;
-          }
-          return { ...prev, [docType]: current + 10 };
-        });
-      }, 200);
 
       const { data, error } = await supabase.storage
         .from('teacher-documents')
         .upload(filePath, file);
-
-      clearInterval(progressInterval);
 
       if (error) throw error;
 

@@ -200,13 +200,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       await supabase.auth.signOut();
     } catch {}
 
-    // Clear session storage
+    // Clear local storage session
     try {
-      window.sessionStorage.removeItem('sms-auth-session');
+      window.localStorage.removeItem('sms-auth-session');
     } catch {}
 
     window.location.href = '/login';
   }, []);
+
+  useEffect(() => {
+    const handleGlobalLogout = () => {
+      logout();
+    };
+    window.addEventListener('auth:logout', handleGlobalLogout);
+    return () => window.removeEventListener('auth:logout', handleGlobalLogout);
+  }, [logout]);
 
   return (
     <AuthContext.Provider value={{

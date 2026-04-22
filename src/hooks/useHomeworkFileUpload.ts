@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
 
@@ -19,6 +19,22 @@ export function useHomeworkFileUpload() {
     file_name: string;
     file_size_bytes: number;
   } | null>(null);
+
+  useEffect(() => {
+    if (!uploading) return;
+    
+    const progressInterval = setInterval(() => {
+      setProgress(p => {
+        if (p >= 90) { 
+          clearInterval(progressInterval); 
+          return 90; 
+        }
+        return p + 10;
+      });
+    }, 200);
+
+    return () => clearInterval(progressInterval);
+  }, [uploading]);
 
   const validateFile = (file: File): string | null => {
     const ext = file.name.split('.').pop()?.toLowerCase();
@@ -44,21 +60,9 @@ export function useHomeworkFileUpload() {
     try {
       const filePath = `homework/${Date.now()}_${file.name}`;
 
-      const progressInterval = setInterval(() => {
-        setProgress(prev => {
-          if (prev >= 90) {
-            clearInterval(progressInterval);
-            return prev;
-          }
-          return prev + 15;
-        });
-      }, 200);
-
       const { data, error } = await supabase.storage
         .from('homework-files')
         .upload(filePath, file);
-
-      clearInterval(progressInterval);
 
       if (error) throw error;
 

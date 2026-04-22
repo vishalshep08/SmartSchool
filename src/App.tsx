@@ -87,9 +87,9 @@ const queryClient = new QueryClient({
         return failureCount < 2;
       },
       retryDelay: (attempt) => Math.min(1000 * 2 ** attempt, 10000),
-      staleTime: 1000 * 60 * 2,       // 2 minutes — data considered fresh
+      staleTime: 1000 * 60 * 5,       // 5 minutes — data considered fresh
       gcTime: 1000 * 60 * 10,         // 10 minutes — keep in cache even if unused
-      refetchOnWindowFocus: true,     // re-fetch when tab regains focus
+      refetchOnWindowFocus: false,    // prevent fetch storm on tab switch
       refetchOnMount: true,           // always refetch when component mounts if stale
       refetchOnReconnect: true,       // re-fetch after network reconnects
     },
